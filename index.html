@@ -1,0 +1,2412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pip's Midnight Observatory ✨</title>
+  <meta name="description" content="Tiny skull. Big dreams. Open after bedtime. Pip is a Junior Dream Engineer at the Midnight Nursery." />
+  <meta property="og:title" content="Pip's Midnight Observatory" />
+  <meta property="og:description" content="Tiny skull. Big dreams. Open after bedtime." />
+  <meta name="theme-color" content="#17172F" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600;700&family=Nunito:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body data-theme="midnight">
+
+  <!-- Skip link for accessibility -->
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <!-- Sparkle cursor trail canvas -->
+  <canvas id="sparkle-canvas" aria-hidden="true"></canvas>
+
+  <!-- Dream Flashlight cursor illumination layer -->
+  <div id="dream-flashlight" class="dream-flashlight" aria-hidden="true"></div>
+
+  <!-- ========== NAVIGATION ========== -->
+  <header class="site-nav" role="banner">
+    <div class="nav-inner">
+      <a class="nav-brand" href="#hero" aria-label="Pip's Midnight Observatory - go to top">
+        <span class="nav-pip-icon" aria-hidden="true">☽</span>
+        <span>Pip's Observatory</span>
+      </a>
+      <nav aria-label="Main navigation">
+        <ul class="nav-links" role="list">
+          <li><a href="#meet-pip">Meet Pip</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#story">Story</a></li>
+          <li><a href="#guestbook">Guestbook</a></li>
+        </ul>
+      </nav>
+      <div class="nav-controls">
+        <button id="flashlight-toggle" class="icon-btn active" aria-label="Toggle Dream Lantern cursor light" aria-pressed="true" title="Toggle Dream Lantern 🔦">
+          <span class="flashlight-icon" aria-hidden="true">🔦</span>
+        </button>
+        <button id="chaos-toggle" class="icon-btn" aria-label="Toggle retro Chaos Mode" aria-pressed="false" title="Toggle retro Chaos Mode ⚡">
+          <span class="chaos-icon" aria-hidden="true">⚡</span>
+        </button>
+        <button id="mute-btn" class="icon-btn" aria-label="Toggle sound (currently muted)" aria-pressed="true">
+          <span class="mute-icon">🔇</span>
+        </button>
+        <button id="theme-toggle" class="icon-btn" aria-label="Toggle day/night theme" aria-pressed="false">
+          <span class="theme-icon">☀️</span>
+        </button>
+        <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+    <!-- Retro Chaos Mode Notification Banner -->
+    <div class="chaos-banner" id="chaos-banner" hidden aria-live="polite">
+      <div class="chaos-ticker">
+        <span>⚡ RETRO CHAOS MODE ACTIVE · 100% ORGANIC NIGHTMARE-FREE DREAMS · TRIPLE-CLICK LOGO OR TAP ⚡ TO CALM ⚡</span>
+      </div>
+      <button type="button" class="chaos-banner-close" id="chaos-banner-close" aria-label="Turn off Chaos Mode">✕</button>
+    </div>
+    <div class="mobile-nav" id="mobile-nav" hidden>
+      <ul role="list">
+        <li><a href="#meet-pip">Meet Pip</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#story">Story</a></li>
+        <li><a href="#guestbook">Guestbook</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main id="main-content" tabindex="-1">
+
+    <!-- ========== HERO ========== -->
+    <section id="hero" class="hero-section" aria-labelledby="hero-title">
+      <!-- Starfield canvas -->
+      <canvas id="star-canvas" aria-hidden="true"></canvas>
+
+      <!-- Floating decorations -->
+      <div class="hero-decorations" aria-hidden="true">
+        <div class="deco-moon">🌙</div>
+        <div class="deco-cloud cloud-1">☁</div>
+        <div class="deco-cloud cloud-2">☁</div>
+        <div class="deco-star star-1">★</div>
+        <div class="deco-star star-2">✦</div>
+        <div class="deco-star star-3">✧</div>
+        <div class="deco-shooting-star" aria-hidden="true"></div>
+      </div>
+
+      <div class="hero-content">
+        <!-- Pip Avatar -->
+        <div class="pip-avatar-wrap">
+          <img
+            src="https://hax.baby/baby/assets/pip_avatar_cloud.png"
+            alt="Pip the skull baby, wearing a starry nightcap with a pink bow, floating on a cloud"
+            class="pip-avatar"
+            id="pip-avatar"
+            onerror="this.onerror=null; this.src='assets/pip_avatar_cloud.svg';"
+          />
+          <!-- SVG Fallback for Pip -->
+          <div id="pip-svg-fallback" class="pip-svg-fallback" aria-hidden="true" style="display:none;">
+            <svg viewBox="0 0 160 180" xmlns="http://www.w3.org/2000/svg" class="pip-svg">
+              <!-- Nightcap -->
+              <polygon points="80,10 55,65 105,65" fill="#292448" />
+              <circle cx="80" cy="10" r="7" fill="#FFC875" />
+              <!-- Pink bow -->
+              <ellipse cx="62" cy="55" rx="10" ry="6" fill="#F4A7C8" transform="rotate(-20,62,55)" />
+              <ellipse cx="70" cy="55" rx="10" ry="6" fill="#F4A7C8" transform="rotate(20,70,55)" />
+              <circle cx="66" cy="55" r="4" fill="#e87bb5" />
+              <!-- Stars on cap -->
+              <text x="75" y="42" font-size="8" fill="#FFC875">★</text>
+              <text x="82" y="30" font-size="5" fill="#C8B8F0">✦</text>
+              <!-- Skull face -->
+              <ellipse cx="80" cy="105" rx="42" ry="45" fill="#FFF5E9" />
+              <!-- Eye sockets -->
+              <ellipse cx="64" cy="100" rx="13" ry="14" fill="#292448" />
+              <ellipse cx="96" cy="100" rx="13" ry="14" fill="#292448" />
+              <!-- Amber eye glints -->
+              <circle cx="64" cy="100" r="4" fill="#FFC875" opacity="0.9" />
+              <circle cx="96" cy="100" r="4" fill="#FFC875" opacity="0.9" />
+              <circle cx="62" cy="98" r="1.5" fill="#fff" opacity="0.7" />
+              <circle cx="94" cy="98" r="1.5" fill="#fff" opacity="0.7" />
+              <!-- Tiny crooked smile -->
+              <path d="M72,122 Q80,130 88,122" stroke="#292448" stroke-width="2.5" fill="none" stroke-linecap="round" />
+              <!-- Cheek blush -->
+              <ellipse cx="52" cy="116" rx="9" ry="5" fill="#F4A7C8" opacity="0.4" />
+              <ellipse cx="108" cy="116" rx="9" ry="5" fill="#F4A7C8" opacity="0.4" />
+              <!-- Cloud base -->
+              <ellipse cx="80" cy="155" rx="50" ry="22" fill="#C8B8F0" opacity="0.5" />
+              <ellipse cx="55" cy="148" rx="28" ry="18" fill="#C8B8F0" opacity="0.6" />
+              <ellipse cx="105" cy="148" rx="28" ry="18" fill="#C8B8F0" opacity="0.6" />
+              <ellipse cx="80" cy="142" rx="35" ry="22" fill="white" opacity="0.85" />
+            </svg>
+          </div>
+        </div>
+
+        <div class="hero-text">
+          <div class="hero-badge">✨ Track 1 — Pip the Skull Baby</div>
+          <h1 id="hero-title">Pip's Midnight Observatory</h1>
+          <p class="hero-tagline">Tiny skull. Big dreams. Open after bedtime.</p>
+          <p class="hero-intro">
+            Hello, sleepyhead! 👋 Welcome to my little corner of the night sky.
+            I'm Pip, Junior Dream Engineer at the Midnight Nursery.
+            Pull up a cloud and stay a while — there's magic to discover.
+          </p>
+          <div class="hero-actions">
+            <a href="#projects" class="btn btn-primary">Explore the Observatory 🔭</a>
+            <a href="#meet-pip" class="btn btn-secondary">Meet Pip 💀</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Retro visitor counter -->
+      <div class="visitor-counter" aria-label="Local dream visits counter">
+        <div class="counter-badge">
+          <span class="counter-label">✦ Local Dream Log ✦</span>
+          <span class="counter-digits" id="visitor-count">000000</span>
+          <span class="counter-sub">dream visits in this browser</span>
+        </div>
+      </div>
+
+      <!-- Status badge -->
+      <div class="status-badge" aria-live="polite">
+        <span class="status-dot" aria-hidden="true"></span>
+        <span id="status-text">Pip is currently brewing dreams ✨</span>
+      </div>
+    </section>
+
+    <!-- ========== MEET PIP ========== -->
+    <section id="meet-pip" class="meet-pip-section" aria-labelledby="pip-title">
+      <div class="section-container">
+        <div class="section-header">
+          <div class="retro-badge">✦ Personnel File ✦</div>
+          <h2 id="pip-title">Meet Pip</h2>
+          <p class="section-subtitle">Junior Dream Engineer · Midnight Nursery</p>
+        </div>
+
+        <div class="pip-profile-grid">
+          <!-- Portrait -->
+          <div class="pip-portrait-wrap">
+            <img
+              src="https://hax.baby/baby/assets/pip_portrait.png"
+              alt="Pip's official portrait — a round skull baby with a starry nightcap and warm amber eyes"
+              class="pip-portrait"
+              onerror="this.onerror=null; this.src='assets/pip_portrait.svg';"
+            />
+            <div id="pip-portrait-fallback" class="pip-portrait-fallback" style="display:none;" aria-hidden="true">
+              <svg viewBox="0 0 140 160" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;">
+                <polygon points="70,8 48,58 92,58" fill="#292448" />
+                <circle cx="70" cy="8" r="6" fill="#FFC875" />
+                <text x="62" y="35" font-size="7" fill="#FFC875">★</text>
+                <ellipse cx="56" cy="48" rx="9" ry="5.5" fill="#F4A7C8" transform="rotate(-20,56,48)" />
+                <ellipse cx="64" cy="48" rx="9" ry="5.5" fill="#F4A7C8" transform="rotate(20,64,48)" />
+                <circle cx="60" cy="48" r="3.5" fill="#e87bb5" />
+                <ellipse cx="70" cy="100" rx="38" ry="42" fill="#FFF5E9" />
+                <ellipse cx="56" cy="96" rx="12" ry="13" fill="#292448" />
+                <ellipse cx="84" cy="96" rx="12" ry="13" fill="#292448" />
+                <circle cx="56" cy="96" r="3.5" fill="#FFC875" opacity="0.9" />
+                <circle cx="84" cy="96" r="3.5" fill="#FFC875" opacity="0.9" />
+                <path d="M62,116 Q70,124 78,116" stroke="#292448" stroke-width="2" fill="none" stroke-linecap="round" />
+                <ellipse cx="46" cy="110" rx="8" ry="4.5" fill="#F4A7C8" opacity="0.4" />
+                <ellipse cx="94" cy="110" rx="8" ry="4.5" fill="#F4A7C8" opacity="0.4" />
+              </svg>
+            </div>
+            <div class="portrait-frame-label">💀 Pip — Junior Dream Eng.</div>
+          </div>
+
+          <!-- Bio -->
+          <div class="pip-bio">
+            <p class="pip-bio-main">
+              Hello, sleepyhead! I'm Pip, Junior Dream Engineer at the Midnight Nursery.
+              I collect the little wishes hiding under pillows, turn melodies into moonbeams,
+              and deliver dreams before the morning bell rings.
+            </p>
+
+            <div class="pip-traits">
+              <div class="trait-card">
+                <span class="trait-icon">🌙</span>
+                <div>
+                  <strong>Personality</strong>
+                  <p>Gentle, sleepy, endlessly curious, and fiercely protective of all dreamers.</p>
+                </div>
+              </div>
+              <div class="trait-card">
+                <span class="trait-icon">🎵</span>
+                <div>
+                  <strong>Favourite Activity</strong>
+                  <p>Composing tiny lullabies on the Midnight Music Box at 3 AM.</p>
+                </div>
+              </div>
+              <div class="trait-card">
+                <span class="trait-icon">⭐</span>
+                <div>
+                  <strong>Job Title</strong>
+                  <p>Junior Dream Engineer — sorting dreams by warmth, colour, and cosiness.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Clickable status message -->
+            <div class="pip-status-wrap">
+              <p class="pip-status-label">Current Status (click to change):</p>
+              <button class="pip-status-btn" id="pip-status-btn" aria-label="Click to see Pip's current status">
+                <span id="pip-status-msg">😴 Currently napping between dream deliveries...</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Retro decorative rule -->
+        <div class="retro-divider" aria-hidden="true">· · · ✦ · · ·</div>
+      </div>
+    </section>
+
+    <!-- ========== PROJECTS ========== -->
+    <section id="projects" class="projects-section" aria-labelledby="projects-title">
+      <div class="section-container">
+        <div class="section-header">
+          <div class="retro-badge">🔭 Pip's Workshop</div>
+          <h2 id="projects-title">Interactive Projects</h2>
+          <p class="section-subtitle">Six magical experiments from the Midnight Nursery</p>
+        </div>
+
+        <!-- PROJECT 1: THE LULLABY LAB -->
+        <article class="project-card" id="lullaby-lab" aria-labelledby="lullaby-title">
+          <div class="project-card-header">
+            <img
+              src="https://hax.baby/baby/assets/pip_lullaby_box.png"
+              alt="Pip's magical lullaby music box"
+              class="project-asset"
+              onerror="this.onerror=null; this.src='assets/pip_lullaby_box.svg';"
+            />
+            <div id="lullaby-asset-fallback" class="asset-fallback" style="display:none;" aria-hidden="true">
+              <svg viewBox="0 0 100 80" xmlns="http://www.w3.org/2000/svg" style="width:90px;height:70px">
+                <rect x="15" y="30" width="70" height="45" rx="8" fill="#292448" stroke="#C8B8F0" stroke-width="2"/>
+                <rect x="20" y="35" width="60" height="35" rx="5" fill="#17172F"/>
+                <circle cx="50" cy="52" r="12" fill="#C8B8F0" opacity="0.3" stroke="#C8B8F0" stroke-width="1.5"/>
+                <polygon points="45,46 45,58 57,52" fill="#FFC875" />
+                <rect x="25" y="24" width="50" height="10" rx="5" fill="#292448" stroke="#C8B8F0" stroke-width="1.5"/>
+                <circle cx="50" cy="29" r="3" fill="#F4A7C8"/>
+                <text x="24" y="79" font-size="6" fill="#C8B8F0">♪ ♫ ♩ ♬</text>
+              </svg>
+            </div>
+            <div class="project-header-text">
+              <h3 id="lullaby-title">🎵 The Lullaby Lab</h3>
+              <p>Compose tiny bedtime melodies</p>
+            </div>
+          </div>
+          <div class="project-body">
+            <p class="project-desc">Press the dream notes to compose your own bedtime melody. Each note is a little wish wrapped in sound.</p>
+
+            <!-- Audio not supported fallback -->
+            <div id="audio-fallback" class="audio-fallback" hidden>
+              <p>🔇 Your browser doesn't support Web Audio. Try a modern browser to hear the lullabies!</p>
+            </div>
+
+            <!-- Note pads -->
+            <div class="note-pads" role="group" aria-label="Musical note pads">
+              <button class="note-pad" data-note="C4" data-freq="261.63" data-label="Do" aria-label="Play Do note">
+                <span class="note-symbol">♩</span>
+                <span class="note-name">Do</span>
+              </button>
+              <button class="note-pad" data-note="D4" data-freq="293.66" data-label="Re" aria-label="Play Re note">
+                <span class="note-symbol">♪</span>
+                <span class="note-name">Re</span>
+              </button>
+              <button class="note-pad" data-note="E4" data-freq="329.63" data-label="Mi" aria-label="Play Mi note">
+                <span class="note-symbol">♫</span>
+                <span class="note-name">Mi</span>
+              </button>
+              <button class="note-pad" data-note="F4" data-freq="349.23" data-label="Fa" aria-label="Play Fa note">
+                <span class="note-symbol">♬</span>
+                <span class="note-name">Fa</span>
+              </button>
+              <button class="note-pad" data-note="G4" data-freq="392.00" data-label="Sol" aria-label="Play Sol note">
+                <span class="note-symbol">♩</span>
+                <span class="note-name">Sol</span>
+              </button>
+              <button class="note-pad" data-note="A4" data-freq="440.00" data-label="La" aria-label="Play La note">
+                <span class="note-symbol">♪</span>
+                <span class="note-name">La</span>
+              </button>
+              <button class="note-pad" data-note="B4" data-freq="493.88" data-label="Si" aria-label="Play Si note">
+                <span class="note-symbol">♫</span>
+                <span class="note-name">Si</span>
+              </button>
+              <button class="note-pad" data-note="C5" data-freq="523.25" data-label="Do♪" aria-label="Play high Do note">
+                <span class="note-symbol">♬</span>
+                <span class="note-name">Do♪</span>
+              </button>
+            </div>
+
+            <!-- Melody presets -->
+            <div class="melody-presets" role="group" aria-label="Lullaby presets">
+              <span class="presets-label">Pip's Presets:</span>
+              <button type="button" class="preset-btn" data-preset="sleepy-moon" aria-label="Load Sleepy Moon preset melody">🌙 Sleepy Moon</button>
+              <button type="button" class="preset-btn" data-preset="twinkle-cloud" aria-label="Load Twinkle Cloud preset melody">☁️ Twinkle Cloud</button>
+              <button type="button" class="preset-btn" data-preset="starfall" aria-label="Load Starfall preset melody">⭐ Starfall</button>
+            </div>
+
+            <!-- Melody display -->
+            <div class="melody-display" id="melody-display" aria-live="polite" aria-label="Your melody so far">
+              <span class="melody-placeholder">Your melody will appear here...</span>
+            </div>
+
+            <!-- Controls -->
+            <div class="lullaby-controls">
+              <button class="btn btn-primary" id="play-melody-btn" disabled aria-label="Play your composed melody">
+                ▶ Play Melody
+              </button>
+              <button class="btn btn-secondary" id="stop-melody-btn" disabled aria-label="Stop playing melody">
+                ■ Stop
+              </button>
+              <button class="btn btn-ghost" id="clear-melody-btn" aria-label="Clear melody and start over">
+                ✕ Clear
+              </button>
+              <div class="volume-control">
+                <label for="melody-volume" class="sr-only">Volume</label>
+                <span aria-hidden="true">🔈</span>
+                <input type="range" id="melody-volume" min="0" max="1" step="0.05" value="0.5" class="volume-slider" />
+                <span aria-hidden="true">🔊</span>
+              </div>
+            </div>
+
+            <div class="lullaby-feedback" id="lullaby-feedback" aria-live="polite"></div>
+          </div>
+        </article>
+
+        <!-- PROJECT 2: DREAM NIGHTLIGHT -->
+        <article class="project-card" id="dream-nightlight" aria-labelledby="nightlight-title">
+          <div class="project-card-header">
+            <img
+              src="https://hax.baby/baby/assets/pip_dream_lantern.png"
+              alt="Pip's glowing dream lantern"
+              class="project-asset"
+              onerror="this.onerror=null; this.src='assets/pip_dream_lantern.svg';"
+            />
+            <div id="lantern-fallback" class="asset-fallback" style="display:none;" aria-hidden="true">
+              <svg viewBox="0 0 80 100" xmlns="http://www.w3.org/2000/svg" style="width:70px;height:90px">
+                <line x1="40" y1="0" x2="40" y2="15" stroke="#C8B8F0" stroke-width="3" stroke-linecap="round"/>
+                <rect x="20" y="10" width="40" height="5" rx="2" fill="#C8B8F0" opacity="0.7"/>
+                <path d="M22,15 L18,80 L62,80 L58,15 Z" fill="#292448" stroke="#C8B8F0" stroke-width="2"/>
+                <path d="M25,18 L21,77 L59,77 L55,18 Z" fill="#17172F" opacity="0.8"/>
+                <!-- Glow -->
+                <ellipse cx="40" cy="48" rx="16" ry="24" fill="#FFC875" opacity="0.35"/>
+                <circle cx="40" cy="48" r="10" fill="#FFC875" opacity="0.7"/>
+                <circle cx="40" cy="48" r="5" fill="#fff" opacity="0.9"/>
+                <rect x="20" y="78" width="40" height="8" rx="4" fill="#C8B8F0" opacity="0.7"/>
+              </svg>
+            </div>
+            <div class="project-header-text">
+              <h3 id="nightlight-title">🌙 Dream Nightlight</h3>
+              <p>Design your dream atmosphere</p>
+            </div>
+          </div>
+          <div class="project-body">
+            <p class="project-desc">Choose the light of your dreams. Each mode transforms the Observatory into a different dreamscape.</p>
+
+            <!-- Nightlight display -->
+            <div class="nightlight-display" id="nightlight-display" role="img" aria-label="Dream nightlight scene">
+              <div class="nightlight-scene mode-midnight" id="nightlight-scene">
+                <!-- Aurora wave curtains (for Aurora mode) -->
+                <div class="nl-aurora-curtains" aria-hidden="true">
+                  <div class="aurora-beam beam-1"></div>
+                  <div class="aurora-beam beam-2"></div>
+                  <div class="aurora-beam beam-3"></div>
+                  <div class="aurora-beam beam-4"></div>
+                </div>
+
+                <!-- Starry backdrop -->
+                <div class="nl-stars" id="nl-stars" aria-hidden="true">
+                  <span>★</span><span>✦</span><span>✧</span><span>★</span><span>✦</span><span>✧</span><span>★</span>
+                </div>
+
+                <!-- Floating warm embers (for Cozy mode) -->
+                <div class="nl-cozy-embers" aria-hidden="true">
+                  <span class="ember ember-1"></span>
+                  <span class="ember ember-2"></span>
+                  <span class="ember ember-3"></span>
+                  <span class="ember ember-4"></span>
+                  <span class="ember ember-5"></span>
+                  <span class="ember ember-6"></span>
+                </div>
+
+                <!-- Midnight background artwork (Midnight mode) -->
+                <div class="nl-midnight-artwork" aria-hidden="true">
+                  <!-- Custom image fallback from assets/midnight.png -->
+                  <img
+                    id="nl-midnight-custom-img"
+                    src="assets/midnight.png"
+                    alt=""
+                    class="nl-midnight-img-custom"
+                    onload="this.style.display='block'; document.getElementById('nightlight-scene')?.classList.add('has-midnight-art');"
+                    onerror="this.style.display='none'; document.getElementById('nightlight-scene')?.classList.remove('has-midnight-art');"
+                  />
+                  <input type="file" id="midnight-file-input" accept="image/*" style="display:none;" />
+
+                  <!-- Subtle animated moonlight halo over the full moon -->
+                  <div class="nl-midnight-lunar-glow"></div>
+
+                  <!-- Gently twinkling stars in the midnight violet sky -->
+                  <div class="nl-midnight-stars">
+                    <span class="mid-star mds-1">✦</span>
+                    <span class="mid-star mds-2">★</span>
+                    <span class="mid-star mds-3">✧</span>
+                    <span class="mid-star mds-4">✦</span>
+                    <span class="mid-star mds-5">★</span>
+                    <span class="mid-star mds-6">✧</span>
+                    <span class="mid-star mds-7">✦</span>
+                  </div>
+                </div>
+
+                <!-- Moonrise background artwork (Moonrise mode) -->
+                <div class="nl-moonrise-artwork" aria-hidden="true">
+                  <!-- Custom image fallback from assets/moonrise.png -->
+                  <img
+                    id="nl-moonrise-custom-img"
+                    src="assets/moonrise.png"
+                    alt=""
+                    class="nl-moonrise-img-custom"
+                    onload="this.style.display='block'; document.getElementById('nightlight-scene')?.classList.add('has-moonrise-art');"
+                    onerror="this.style.display='none'; document.getElementById('nightlight-scene')?.classList.remove('has-moonrise-art');"
+                  />
+                  <input type="file" id="moonrise-file-input" accept="image/*" style="display:none;" />
+
+                  <!-- Subtle animated moonlight halo over the full moon -->
+                  <div class="nl-moonrise-lunar-glow"></div>
+
+                  <!-- Gently twinkling stars in the purple dawn sky -->
+                  <div class="nl-moonrise-stars">
+                    <span class="moon-star ms-1">✦</span>
+                    <span class="moon-star ms-2">★</span>
+                    <span class="moon-star ms-3">✧</span>
+                    <span class="moon-star ms-4">✦</span>
+                    <span class="moon-star ms-5">★</span>
+                    <span class="moon-star ms-6">✧</span>
+                    <span class="moon-star ms-7">✦</span>
+                  </div>
+                </div>
+
+                <!-- Aurora background artwork (Aurora mode) -->
+                <div class="nl-aurora-artwork" aria-hidden="true">
+                  <!-- Custom image fallback from assets/aurora.png -->
+                  <img
+                    id="nl-aurora-custom-img"
+                    src="assets/aurora.png"
+                    alt=""
+                    class="nl-aurora-img-custom"
+                    onload="this.style.display='block'; document.getElementById('nightlight-scene')?.classList.add('has-aurora-art');"
+                    onerror="this.style.display='none'; document.getElementById('nightlight-scene')?.classList.remove('has-aurora-art');"
+                  />
+                  <input type="file" id="aurora-file-input" accept="image/*" style="display:none;" />
+
+                  <!-- Subtle animated aurora shimmer glow overlay -->
+                  <div class="nl-aurora-shimmer-glow"></div>
+
+                  <!-- Gently twinkling stars in the aurora sky -->
+                  <div class="nl-aurora-stars">
+                    <span class="aur-star as-1">✦</span>
+                    <span class="aur-star as-2">★</span>
+                    <span class="aur-star as-3">✧</span>
+                    <span class="aur-star as-4">✦</span>
+                    <span class="aur-star as-5">★</span>
+                    <span class="aur-star as-6">✧</span>
+                    <span class="aur-star as-7">✦</span>
+                  </div>
+                </div>
+
+                <!-- Sunrise background artwork (Sunrise mode) -->
+                <div class="nl-sunrise-artwork" aria-hidden="true">
+                  <!-- Optional custom image fallback (safely hidden if asset is not placed on disk) -->
+                  <img
+                    id="nl-sunrise-custom-img"
+                    src="assets/sunrise.png"
+                    alt=""
+                    class="nl-sunrise-img-custom"
+                    onload="this.style.display='block';"
+                    onerror="this.style.display='none';"
+                  />
+                  <input type="file" id="sunrise-file-input" accept="image/*" style="display:none;" />
+
+                  <!-- Handcrafted Panoramic Sunrise Vector Artwork (matching reference image) -->
+                  <svg class="nl-sunrise-vector-art" viewBox="0 0 700 380" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                      <!-- Sky twilight gradient -->
+                      <linearGradient id="snr-sky-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" stop-color="#2d0a38"/>
+                        <stop offset="28%" stop-color="#641147"/>
+                        <stop offset="52%" stop-color="#9d1645"/>
+                        <stop offset="72%" stop-color="#d4352b"/>
+                        <stop offset="88%" stop-color="#f97316"/>
+                        <stop offset="100%" stop-color="#fbbf24"/>
+                      </linearGradient>
+
+                      <!-- Sun outer corona radial glow -->
+                      <radialGradient id="snr-sun-corona" cx="50%" cy="50%" r="50%">
+                        <stop offset="0%" stop-color="#ffffff" stop-opacity="1"/>
+                        <stop offset="25%" stop-color="#fef08a" stop-opacity="0.95"/>
+                        <stop offset="55%" stop-color="#fb923c" stop-opacity="0.75"/>
+                        <stop offset="80%" stop-color="#f43f5e" stop-opacity="0.35"/>
+                        <stop offset="100%" stop-color="#881337" stop-opacity="0"/>
+                      </radialGradient>
+
+                      <!-- Sun disk gradient -->
+                      <radialGradient id="snr-sun-disk" cx="50%" cy="50%" r="50%">
+                        <stop offset="0%" stop-color="#ffffff"/>
+                        <stop offset="40%" stop-color="#fffbeb"/>
+                        <stop offset="75%" stop-color="#fef08a"/>
+                        <stop offset="100%" stop-color="#fde047"/>
+                      </radialGradient>
+
+                      <!-- Left billowy cloud gradients -->
+                      <linearGradient id="snr-cloud-left" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#fde047" stop-opacity="0.95"/>
+                        <stop offset="35%" stop-color="#fb923c" stop-opacity="0.9"/>
+                        <stop offset="70%" stop-color="#e11d48" stop-opacity="0.85"/>
+                        <stop offset="100%" stop-color="#831843" stop-opacity="0.75"/>
+                      </linearGradient>
+
+                      <!-- Right billowy cloud gradients -->
+                      <linearGradient id="snr-cloud-right" x1="100%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" stop-color="#fef08a" stop-opacity="0.95"/>
+                        <stop offset="35%" stop-color="#fb923c" stop-opacity="0.9"/>
+                        <stop offset="70%" stop-color="#e11d48" stop-opacity="0.85"/>
+                        <stop offset="100%" stop-color="#831843" stop-opacity="0.75"/>
+                      </linearGradient>
+
+                      <!-- Lake water base -->
+                      <linearGradient id="snr-lake-base" x1="0%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" stop-color="#551240"/>
+                        <stop offset="30%" stop-color="#6e144a"/>
+                        <stop offset="65%" stop-color="#4d0c3c"/>
+                        <stop offset="100%" stop-color="#240422"/>
+                      </linearGradient>
+
+                      <!-- Lake sun reflection column -->
+                      <linearGradient id="snr-lake-refl-col" x1="0%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" stop-color="#ffffff" stop-opacity="0.95"/>
+                        <stop offset="25%" stop-color="#fef08a" stop-opacity="0.9"/>
+                        <stop offset="60%" stop-color="#fb923c" stop-opacity="0.75"/>
+                        <stop offset="100%" stop-color="#ea580c" stop-opacity="0.2"/>
+                      </linearGradient>
+
+                      <!-- Shooting star gradient -->
+                      <linearGradient id="snr-shooting-star" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#ffffff" stop-opacity="1"/>
+                        <stop offset="40%" stop-color="#fef08a" stop-opacity="0.8"/>
+                        <stop offset="100%" stop-color="#f43f5e" stop-opacity="0"/>
+                      </linearGradient>
+
+                      <!-- Mountain gradients -->
+                      <linearGradient id="snr-mnt-mid-left" x1="100%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" stop-color="#831843"/>
+                        <stop offset="40%" stop-color="#581442"/>
+                        <stop offset="100%" stop-color="#360a31"/>
+                      </linearGradient>
+                      <linearGradient id="snr-mnt-mid-right" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#831843"/>
+                        <stop offset="40%" stop-color="#581442"/>
+                        <stop offset="100%" stop-color="#360a31"/>
+                      </linearGradient>
+                    </defs>
+
+                    <!-- 1. Sky -->
+                    <rect width="700" height="255" fill="url(#snr-sky-grad)"/>
+
+                    <!-- 2. Stars & Shooting Stars -->
+                    <g fill="#ffffff" opacity="0.85">
+                      <circle cx="65" cy="35" r="1.2"/>
+                      <circle cx="115" cy="55" r="1"/>
+                      <circle cx="210" cy="25" r="1.3"/>
+                      <circle cx="280" cy="45" r="1.1"/>
+                      <circle cx="380" cy="20" r="1"/>
+                      <circle cx="440" cy="40" r="1.4"/>
+                      <circle cx="620" cy="30" r="1.2"/>
+                    </g>
+                    <!-- Shooting Stars -->
+                    <g class="snr-shooting-stars">
+                      <line x1="120" y1="30" x2="185" y2="60" stroke="url(#snr-shooting-star)" stroke-width="2.5" stroke-linecap="round"/>
+                      <circle cx="185" cy="60" r="2.5" fill="#ffffff"/>
+                      <line x1="560" y1="28" x2="495" y2="62" stroke="url(#snr-shooting-star)" stroke-width="2.5" stroke-linecap="round"/>
+                      <circle cx="495" cy="62" r="2.5" fill="#ffffff"/>
+                    </g>
+                    <!-- Bright 4-point cross stars -->
+                    <g transform="translate(245, 38)">
+                      <circle cx="0" cy="0" r="5" fill="#fef08a" opacity="0.5"/>
+                      <path d="M 0,-10 L 1.2,-2 L 10,0 L 1.2,2 L 0,10 L -1.2,2 L -10,0 L -1.2,-2 Z" fill="#ffffff"/>
+                    </g>
+                    <g transform="translate(535, 18)">
+                      <circle cx="0" cy="0" r="4" fill="#fef08a" opacity="0.4"/>
+                      <path d="M 0,-8 L 1,-1.5 L 8,0 L 1,1.5 L 0,8 L -1,1.5 L -8,0 L -1,-1.5 Z" fill="#ffffff"/>
+                    </g>
+
+                    <!-- 3. Left & Right Billowing Cumulus Clouds -->
+                    <!-- Left Cumulus Cluster -->
+                    <g class="snr-clouds-left">
+                      <path d="M -40,210 Q -40,110 25,110 Q 30,55 90,65 Q 140,40 185,85 Q 225,80 235,145 Q 255,160 250,215 Z" fill="url(#snr-cloud-left)" opacity="0.95"/>
+                      <path d="M -20,215 Q -20,135 40,135 Q 75,90 125,110 Q 170,95 200,140 Q 225,150 220,215 Z" fill="#fbcfe8" opacity="0.35"/>
+                    </g>
+                    <!-- Right Cumulus Cluster -->
+                    <g class="snr-clouds-right">
+                      <path d="M 740,210 Q 740,110 675,110 Q 670,55 610,65 Q 560,40 515,85 Q 475,80 465,145 Q 445,160 450,215 Z" fill="url(#snr-cloud-right)" opacity="0.95"/>
+                      <path d="M 720,215 Q 720,135 660,135 Q 625,90 575,110 Q 530,95 500,140 Q 475,150 480,215 Z" fill="#fef08a" opacity="0.35"/>
+                    </g>
+
+                    <!-- 4. Rising Sun in Center Horizon -->
+                    <circle cx="350" cy="225" r="100" fill="url(#snr-sun-corona)"/>
+                    <circle cx="350" cy="225" r="48" fill="url(#snr-sun-disk)"/>
+                    <circle cx="350" cy="225" r="34" fill="#ffffff"/>
+
+                    <!-- 5. Distant Low Mountain Saddles Behind/Framing Sun -->
+                    <path d="M 230,248 Q 290,234 350,238 Q 410,234 470,248 L 470,258 L 230,258 Z" fill="#9e1840" opacity="0.85"/>
+
+                    <!-- 6. Layered Mid-Ground Mountains -->
+                    <!-- Left majestic mountain peak -->
+                    <polygon points="10,255 10,225 70,200 135,165 195,195 245,215 310,245 330,255" fill="url(#snr-mnt-mid-left)"/>
+                    <path d="M 135,165 L 145,188 L 180,210 L 220,228 L 260,245" stroke="#fbcfe8" stroke-width="2.5" fill="none" opacity="0.5"/>
+
+                    <!-- Right majestic mountain peak -->
+                    <polygon points="690,255 690,225 630,200 565,165 505,195 455,215 390,245 370,255" fill="url(#snr-mnt-mid-right)"/>
+                    <path d="M 565,165 L 555,188 L 520,210 L 480,228 L 440,245" stroke="#fed7aa" stroke-width="2.5" fill="none" opacity="0.5"/>
+
+                    <!-- 7. Serene Glacial Lake & Water -->
+                    <rect x="0" y="255" width="700" height="125" fill="url(#snr-lake-base)"/>
+
+                    <!-- Radiant Golden Reflection Column of the Sun down center lake -->
+                    <polygon points="340,255 360,255 395,380 305,380" fill="url(#snr-lake-refl-col)" opacity="0.88"/>
+                    <polygon points="345,255 355,255 375,380 325,380" fill="#ffffff" opacity="0.75"/>
+
+                    <!-- Lake surface horizontal ripples -->
+                    <g opacity="0.75">
+                      <line x1="310" y1="262" x2="390" y2="262" stroke="#ffffff" stroke-width="1.8" stroke-dasharray="14 8"/>
+                      <line x1="285" y1="274" x2="415" y2="274" stroke="#fef08a" stroke-width="2" stroke-dasharray="20 12"/>
+                      <line x1="260" y1="290" x2="440" y2="290" stroke="#fde047" stroke-width="2" stroke-dasharray="24 14"/>
+                      <line x1="230" y1="310" x2="470" y2="310" stroke="#fbbf24" stroke-width="2.2" stroke-dasharray="26 16"/>
+                      <line x1="210" y1="332" x2="490" y2="332" stroke="#f97316" stroke-width="2" stroke-dasharray="28 18"/>
+                      <line x1="170" y1="355" x2="530" y2="355" stroke="#f43f5e" stroke-width="2" stroke-dasharray="30 20"/>
+                    </g>
+
+                    <!-- 8. Shorelines, Dense Pine Forests & Autumnal Foliage -->
+                    <!-- Left shoreline forested spit -->
+                    <path d="M 0,345 Q 80,335 150,352 Q 220,370 270,380 L 0,380 Z" fill="#150314"/>
+                    <g class="snr-pines-left" fill="#1b051b">
+                      <polygon points="12,275 2,215 22,215"/>
+                      <polygon points="30,270 20,205 40,205"/>
+                      <polygon points="50,272 42,212 58,212"/>
+                      <polygon points="75,275 66,220 84,220"/>
+                      <polygon points="105,280 98,230 112,230"/>
+                      <polygon points="135,290 128,245 142,245"/>
+                      <polygon points="168,300 162,258 174,258"/>
+                      <polygon points="205,320 200,275 210,275"/>
+                    </g>
+                    <!-- Autumnal warm foliage along shore -->
+                    <path d="M 0,310 Q 50,300 90,320 Q 140,340 180,380 L 0,380 Z" fill="#c2410c" opacity="0.65"/>
+                    <!-- Fairy/cabin glowing lights along shoreline -->
+                    <g fill="#fef08a">
+                      <circle cx="68" cy="255" r="2.5" filter="url(#snr-sun-corona)"/>
+                      <circle cx="118" cy="270" r="2.2"/>
+                      <circle cx="162" cy="295" r="2"/>
+                      <circle cx="215" cy="330" r="2.5"/>
+                    </g>
+
+                    <!-- Right shoreline forested spit -->
+                    <path d="M 700,345 Q 620,335 550,352 Q 480,370 430,380 L 700,380 Z" fill="#150314"/>
+                    <g class="snr-pines-right" fill="#1b051b">
+                      <polygon points="688,275 698,215 678,215"/>
+                      <polygon points="670,270 680,205 660,205"/>
+                      <polygon points="650,272 658,212 642,212"/>
+                      <polygon points="625,275 634,220 616,220"/>
+                      <polygon points="595,280 602,230 588,230"/>
+                      <polygon points="565,290 572,245 558,245"/>
+                      <polygon points="532,300 538,258 526,258"/>
+                      <polygon points="495,320 500,275 490,275"/>
+                    </g>
+                    <!-- Right autumnal warm foliage -->
+                    <path d="M 700,310 Q 650,300 610,320 Q 560,340 520,380 L 700,380 Z" fill="#c2410c" opacity="0.65"/>
+                    <!-- Right shoreline glowing lights -->
+                    <g fill="#fef08a">
+                      <circle cx="632" cy="255" r="2.5" filter="url(#snr-sun-corona)"/>
+                      <circle cx="582" cy="270" r="2.2"/>
+                      <circle cx="538" cy="295" r="2"/>
+                      <circle cx="485" cy="330" r="2.5"/>
+                    </g>
+                  </svg>
+
+                  <!-- Animated golden glow overlay -->
+                  <div class="nl-sunrise-golden-glow"></div>
+
+                  <!-- Gently twinkling stars in the upper dawn sky -->
+                  <div class="nl-sunrise-stars">
+                    <span class="sun-star ss-1">✦</span>
+                    <span class="sun-star ss-2">★</span>
+                    <span class="sun-star ss-3">✧</span>
+                    <span class="sun-star ss-4">✦</span>
+                    <span class="sun-star ss-5">★</span>
+                    <span class="sun-star ss-6">✧</span>
+                    <span class="sun-star ss-7">✦</span>
+                  </div>
+                </div>
+
+                <!-- Cozy background artwork (Cozy mode) -->
+                <div class="nl-cozy-artwork" aria-hidden="true">
+                  <!-- Custom image fallback from assets/cozy.png -->
+                  <img
+                    id="nl-cozy-custom-img"
+                    src="assets/cozy.png"
+                    alt=""
+                    class="nl-cozy-img-custom"
+                    onload="this.style.display='block'; document.getElementById('nightlight-scene')?.classList.add('has-cozy-art');"
+                    onerror="this.style.display='none'; document.getElementById('nightlight-scene')?.classList.remove('has-cozy-art');"
+                  />
+                  <input type="file" id="cozy-file-input" accept="image/*" style="display:none;" />
+
+                  <!-- Subtle animated candlelight flame aura pulse -->
+                  <div class="nl-cozy-candle-glow"></div>
+
+                  <!-- Warm floating ember sparkles -->
+                  <div class="nl-cozy-sparks">
+                    <span class="cozy-spark cs-1">✦</span>
+                    <span class="cozy-spark cs-2">★</span>
+                    <span class="cozy-spark cs-3">✧</span>
+                    <span class="cozy-spark cs-4">✦</span>
+                    <span class="cozy-spark cs-5">★</span>
+                  </div>
+                </div>
+
+                <!-- Main celestial or cozy focal illustration -->
+                <div class="nl-focal-wrap" id="nl-focal-wrap">
+                  <div class="nl-moon" id="nl-moon" aria-hidden="true">🌙</div>
+                </div>
+
+                <!-- Mountain & pine tree landscape silhouette (for Aurora & Sunrise modes) -->
+                <div class="nl-landscape-silhouette" aria-hidden="true">
+                  <svg class="nl-landscape-svg" viewBox="0 0 600 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+                    <path class="nl-mountain-back" d="M0,120 L0,70 Q70,30 150,60 T320,40 Q420,20 500,55 T600,65 L600,120 Z" />
+                    <path class="nl-mountain-front" d="M0,120 L0,90 Q90,55 180,80 T380,65 Q480,50 550,75 T600,80 L600,120 Z" />
+                    <g class="nl-pines">
+                      <polygon points="35,120 27,85 43,85" />
+                      <polygon points="35,90 29,70 41,70" />
+                      <polygon points="70,120 63,90 77,90" />
+                      <polygon points="115,120 109,92 121,92" />
+                      <polygon points="465,120 457,82 473,82" />
+                      <polygon points="500,120 493,88 507,88" />
+                      <polygon points="540,120 533,78 547,78" />
+                    </g>
+                  </svg>
+                </div>
+
+                <!-- Billowing dream clouds framing the scene -->
+                <div class="nl-clouds-layer" aria-hidden="true">
+                  <svg class="nl-clouds-svg" viewBox="0 0 600 130" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+                    <path class="nl-cloud-back" d="M -20,130 Q -30,60 20,60 Q 60,20 120,40 Q 180,15 230,55 Q 280,65 300,130 Z" />
+                    <path class="nl-cloud-back-right" d="M 310,130 Q 330,65 380,55 Q 430,15 490,35 Q 550,20 580,60 Q 630,60 630,130 Z" />
+                    <path class="nl-cloud-front-left" d="M -40,130 Q -30,75 30,75 Q 80,45 140,65 Q 190,45 230,85 Q 260,95 270,130 Z" />
+                    <path class="nl-cloud-front-right" d="M 330,130 Q 360,90 410,75 Q 460,40 520,65 Q 570,45 610,80 Q 640,80 640,130 Z" />
+                    <path class="nl-cloud-center" d="M 160,130 Q 230,95 300,98 Q 370,95 440,130 Z" />
+                  </svg>
+                </div>
+
+                <!-- Centered stardust diamond constellation divider -->
+                <div class="nl-constellation-accent" aria-hidden="true">
+                  <span>✦</span><span>★</span><span>✦</span><span>★</span><span>✦</span>
+                </div>
+
+                <div class="nl-message" id="nl-message">Midnight blue — the hour of the deepest dreams.</div>
+              </div>
+            </div>
+
+            <!-- Mode buttons -->
+            <div class="nightlight-modes" role="group" aria-label="Nightlight modes">
+              <button class="mode-btn active" data-mode="midnight" aria-pressed="true">
+                🌑 Midnight
+              </button>
+              <button class="mode-btn" data-mode="moonrise" aria-pressed="false">
+                🌕 Moonrise
+              </button>
+              <button class="mode-btn" data-mode="aurora" aria-pressed="false">
+                🌌 Aurora
+              </button>
+              <button class="mode-btn" data-mode="sunrise" aria-pressed="false">
+                🌅 Sunrise
+              </button>
+              <button class="mode-btn" data-mode="cozy" aria-pressed="false">
+                🕯️ Cozy
+              </button>
+            </div>
+
+            <!-- Custom artwork controls for Midnight mode -->
+            <div class="midnight-custom-control" id="midnight-custom-control">
+              <button type="button" class="midnight-choose-btn" id="midnight-choose-btn" title="Choose or replace the midnight artwork">
+                🌑 Choose Midnight Image
+              </button>
+              <span class="midnight-custom-hint">or drop the image file directly onto the nightlight</span>
+            </div>
+
+            <!-- Custom artwork controls for Moonrise mode -->
+            <div class="moonrise-custom-control" id="moonrise-custom-control">
+              <button type="button" class="moonrise-choose-btn" id="moonrise-choose-btn" title="Choose or replace the moonrise artwork">
+                🌕 Choose Moonrise Image
+              </button>
+              <span class="moonrise-custom-hint">or drop the image file directly onto the nightlight</span>
+            </div>
+
+            <!-- Custom artwork controls for Aurora mode -->
+            <div class="aurora-custom-control" id="aurora-custom-control">
+              <button type="button" class="aurora-choose-btn" id="aurora-choose-btn" title="Choose or replace the aurora artwork">
+                🌌 Choose Aurora Image
+              </button>
+              <span class="aurora-custom-hint">or drop the image file directly onto the nightlight</span>
+            </div>
+
+            <!-- Custom artwork controls for Sunrise mode -->
+            <div class="sunrise-custom-control" id="sunrise-custom-control">
+              <button type="button" class="sunrise-choose-btn" id="sunrise-choose-btn" title="Choose or replace the sunrise artwork">
+                🖼️ Choose Sunrise Image
+              </button>
+              <span class="sunrise-custom-hint">or drop the image file directly onto the nightlight</span>
+            </div>
+
+            <!-- Custom artwork controls for Cozy mode -->
+            <div class="cozy-custom-control" id="cozy-custom-control">
+              <button type="button" class="cozy-choose-btn" id="cozy-choose-btn" title="Choose or replace the cozy artwork">
+                🕯️ Choose Cozy Image
+              </button>
+              <span class="cozy-custom-hint">or drop the image file directly onto the nightlight</span>
+            </div>
+
+            <!-- Brightness slider -->
+            <div class="brightness-control">
+              <label for="brightness-slider">✨ Dream Brightness</label>
+              <input type="range" id="brightness-slider" min="20" max="100" value="70" class="brightness-slider" />
+              <span id="brightness-val">70%</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- PROJECT 3: DREAM DELIVERY MAP -->
+        <article class="project-card" id="dream-map" aria-labelledby="map-title">
+          <div class="project-card-header">
+            <div class="map-icon-wrap" aria-hidden="true">
+              <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg" style="width:70px;height:70px">
+                <circle cx="40" cy="40" r="36" fill="#17172F" stroke="#C8B8F0" stroke-width="2" stroke-dasharray="4 3"/>
+                <circle cx="20" cy="30" r="6" fill="#F4A7C8" opacity="0.9"/>
+                <circle cx="60" cy="22" r="6" fill="#FFC875" opacity="0.9"/>
+                <circle cx="65" cy="58" r="6" fill="#9FD8F2" opacity="0.9"/>
+                <circle cx="25" cy="60" r="6" fill="#C8B8F0" opacity="0.9"/>
+                <line x1="20" y1="30" x2="60" y2="22" stroke="#C8B8F0" stroke-width="1" stroke-dasharray="3 2" opacity="0.6"/>
+                <line x1="60" y1="22" x2="65" y2="58" stroke="#C8B8F0" stroke-width="1" stroke-dasharray="3 2" opacity="0.6"/>
+                <line x1="65" y1="58" x2="25" y2="60" stroke="#C8B8F0" stroke-width="1" stroke-dasharray="3 2" opacity="0.6"/>
+                <line x1="25" y1="60" x2="20" y2="30" stroke="#C8B8F0" stroke-width="1" stroke-dasharray="3 2" opacity="0.6"/>
+                <text x="35" y="44" font-size="10" fill="#FFC875" text-anchor="middle">💀</text>
+              </svg>
+            </div>
+            <div class="project-header-text">
+              <h3 id="map-title">🗺️ Dream Delivery Routes</h3>
+              <p>Pip's nightly delivery route</p>
+            </div>
+          </div>
+          <div class="project-body">
+            <p class="project-desc">Click a destination to send Pip on a dream delivery! Watch the route glow as Pip travels through the night sky.</p>
+
+            <!-- SVG Map -->
+            <div class="dream-map-wrap">
+              <svg class="dream-map-svg" viewBox="0 0 960 540" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Pip's Dream Delivery Map showing four magical destinations: Cloud Kingdom, Moon Garden, Star Harbor, and Pillow Mountain">
+                <defs>
+                  <!-- Sky & Atmosphere Gradients -->
+                  <radialGradient id="dm-sky-core" cx="50%" cy="40%" r="65%">
+                    <stop offset="0%" stop-color="#1c123d" />
+                    <stop offset="35%" stop-color="#130b2c" />
+                    <stop offset="70%" stop-color="#0a061c" />
+                    <stop offset="100%" stop-color="#050310" />
+                  </radialGradient>
+
+                  <!-- Twilight horizon clouds -->
+                  <linearGradient id="dm-twilight-glow" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stop-color="#831843" stop-opacity="0.75" />
+                    <stop offset="25%" stop-color="#db2777" stop-opacity="0.45" />
+                    <stop offset="50%" stop-color="#4c1d95" stop-opacity="0.25" />
+                    <stop offset="75%" stop-color="#9333ea" stop-opacity="0.5" />
+                    <stop offset="100%" stop-color="#c026d3" stop-opacity="0.7" />
+                  </linearGradient>
+
+                  <!-- Lake reflection gradient -->
+                  <linearGradient id="dm-lake-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" stop-color="#0e0a22" />
+                    <stop offset="40%" stop-color="#120c2e" />
+                    <stop offset="85%" stop-color="#090616" />
+                    <stop offset="100%" stop-color="#04020a" />
+                  </linearGradient>
+
+                  <!-- Cloud Kingdom Pastel Gradients -->
+                  <linearGradient id="dm-cloud-puff-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" stop-color="#ffffff" />
+                    <stop offset="40%" stop-color="#f5f3ff" />
+                    <stop offset="75%" stop-color="#ddd6fe" />
+                    <stop offset="100%" stop-color="#a78bfa" />
+                  </linearGradient>
+                  <radialGradient id="dm-cloud-halo" cx="50%" cy="50%" r="50%">
+                    <stop offset="0%" stop-color="#f472b6" stop-opacity="0.85" />
+                    <stop offset="45%" stop-color="#c084fc" stop-opacity="0.45" />
+                    <stop offset="75%" stop-color="#818cf8" stop-opacity="0.15" />
+                    <stop offset="100%" stop-color="transparent" />
+                  </radialGradient>
+                  <linearGradient id="dm-castle-spire" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#ffffff" />
+                    <stop offset="30%" stop-color="#fbcfe8" />
+                    <stop offset="70%" stop-color="#c084fc" />
+                    <stop offset="100%" stop-color="#7e22ce" />
+                  </linearGradient>
+
+                  <!-- Moon Garden Golden Gradients -->
+                  <radialGradient id="dm-moon-glow" cx="50%" cy="50%" r="50%">
+                    <stop offset="0%" stop-color="#fef08a" stop-opacity="0.95" />
+                    <stop offset="40%" stop-color="#f59e0b" stop-opacity="0.55" />
+                    <stop offset="70%" stop-color="#d97706" stop-opacity="0.2" />
+                    <stop offset="100%" stop-color="transparent" />
+                  </radialGradient>
+                  <linearGradient id="dm-crescent-moon" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#ffffff" />
+                    <stop offset="35%" stop-color="#fef08a" />
+                    <stop offset="75%" stop-color="#fbbf24" />
+                    <stop offset="100%" stop-color="#d97706" />
+                  </linearGradient>
+                  <linearGradient id="dm-garden-earth" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" stop-color="#15803d" />
+                    <stop offset="30%" stop-color="#3f3f46" />
+                    <stop offset="85%" stop-color="#27272a" />
+                    <stop offset="100%" stop-color="#18181b" />
+                  </linearGradient>
+
+                  <!-- Pillow Mountain Gradients -->
+                  <radialGradient id="dm-pillow-halo" cx="50%" cy="50%" r="50%">
+                    <stop offset="0%" stop-color="#e879f9" stop-opacity="0.75" />
+                    <stop offset="45%" stop-color="#a855f7" stop-opacity="0.35" />
+                    <stop offset="80%" stop-color="#6366f1" stop-opacity="0.1" />
+                    <stop offset="100%" stop-color="transparent" />
+                  </radialGradient>
+                  <linearGradient id="dm-mountain-rock" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#475569" />
+                    <stop offset="50%" stop-color="#334155" />
+                    <stop offset="85%" stop-color="#1e293b" />
+                    <stop offset="100%" stop-color="#0f172a" />
+                  </linearGradient>
+                  <linearGradient id="dm-pillow-snow" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" stop-color="#ffffff" />
+                    <stop offset="50%" stop-color="#f1f5f9" />
+                    <stop offset="100%" stop-color="#cbd5e1" />
+                  </linearGradient>
+
+                  <!-- Star Harbor Cyan/Aqua Gradients -->
+                  <radialGradient id="dm-star-halo" cx="50%" cy="50%" r="50%">
+                    <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.85" />
+                    <stop offset="40%" stop-color="#06b6d4" stop-opacity="0.5" />
+                    <stop offset="75%" stop-color="#0284c7" stop-opacity="0.15" />
+                    <stop offset="100%" stop-color="transparent" />
+                  </radialGradient>
+                  <radialGradient id="dm-harbor-water" cx="50%" cy="40%" r="60%">
+                    <stop offset="0%" stop-color="#67e8f9" stop-opacity="0.95" />
+                    <stop offset="45%" stop-color="#06b6d4" stop-opacity="0.8" />
+                    <stop offset="80%" stop-color="#0284c7" stop-opacity="0.45" />
+                    <stop offset="100%" stop-color="transparent" />
+                  </radialGradient>
+                  <linearGradient id="dm-lighthouse-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stop-color="#e2e8f0" />
+                    <stop offset="35%" stop-color="#ffffff" />
+                    <stop offset="70%" stop-color="#cbd5e1" />
+                    <stop offset="100%" stop-color="#94a3b8" />
+                  </linearGradient>
+
+                  <!-- Pip Aura & Route Glow Gradients -->
+                  <radialGradient id="pip-stardust-halo" cx="50%" cy="50%" r="50%">
+                    <stop offset="0%" stop-color="#ffffff" stop-opacity="0.95" />
+                    <stop offset="30%" stop-color="#fde047" stop-opacity="0.75" />
+                    <stop offset="65%" stop-color="#f472b6" stop-opacity="0.4" />
+                    <stop offset="100%" stop-color="transparent" />
+                  </radialGradient>
+
+                  <!-- Filter Glows -->
+                  <filter id="map-soft-glow" x="-20%" y="-20%" width="140%" height="140%">
+                    <feGaussianBlur stdDeviation="3.5" result="coloredBlur" />
+                    <feMerge>
+                      <feMergeNode in="coloredBlur" />
+                      <feMergeNode in="SourceGraphic" />
+                    </feMerge>
+                  </filter>
+                  <filter id="map-bright-glow" x="-30%" y="-30%" width="160%" height="160%">
+                    <feGaussianBlur stdDeviation="7" result="coloredBlur" />
+                    <feMerge>
+                      <feMergeNode in="coloredBlur" />
+                      <feMergeNode in="SourceGraphic" />
+                    </feMerge>
+                  </filter>
+                  <filter id="map-halo" x="-40%" y="-40%" width="180%" height="180%">
+                    <feGaussianBlur stdDeviation="14" result="coloredBlur" />
+                    <feMerge>
+                      <feMergeNode in="coloredBlur" />
+                      <feMergeNode in="SourceGraphic" />
+                    </feMerge>
+                  </filter>
+                </defs>
+
+                <!-- LAYER 1: Deep Starry Sky Background -->
+                <rect width="960" height="540" fill="url(#dm-sky-core)" rx="16" />
+
+                <!-- Glowing Twilight & Horizon Clouds -->
+                <path d="M 0,220 Q 90,170 170,210 Q 230,240 280,210 L 280,420 L 0,420 Z" fill="url(#dm-twilight-glow)" opacity="0.4" filter="url(#map-halo)" />
+                <path d="M 680,230 Q 770,180 850,210 Q 920,240 960,220 L 960,420 L 680,420 Z" fill="url(#dm-twilight-glow)" opacity="0.4" filter="url(#map-halo)" />
+
+                <!-- Shooting Stars -->
+                <g class="shooting-stars" aria-hidden="true">
+                  <!-- Shooting Star 1: Top-left across sky -->
+                  <line x1="80" y1="120" x2="210" y2="200" stroke="url(#dm-crescent-moon)" stroke-width="2.2" stroke-linecap="round" opacity="0.8" filter="url(#map-soft-glow)" />
+                  <circle cx="210" cy="200" r="3" fill="#ffffff" filter="url(#map-bright-glow)" />
+                  <!-- Shooting Star 2: Top-right across sky -->
+                  <line x1="890" y1="110" x2="790" y2="185" stroke="url(#dm-crescent-moon)" stroke-width="1.8" stroke-linecap="round" opacity="0.7" filter="url(#map-soft-glow)" />
+                  <circle cx="790" cy="185" r="2.5" fill="#ffffff" filter="url(#map-bright-glow)" />
+                </g>
+
+                <!-- Scattered Starfield Background (twinkling starbursts & dots) -->
+                <g class="map-starfield" fill="#ffffff" aria-hidden="true">
+                  <circle cx="90" cy="60" r="1.5" opacity="0.8" />
+                  <circle cx="160" cy="40" r="1.2" opacity="0.6" />
+                  <circle cx="340" cy="65" r="1.5" opacity="0.75" />
+                  <circle cx="430" cy="45" r="2" opacity="0.9" filter="url(#map-soft-glow)" />
+                  <circle cx="490" cy="90" r="1.2" opacity="0.65" />
+                  <circle cx="560" cy="50" r="1.6" opacity="0.8" />
+                  <circle cx="640" cy="70" r="1.2" opacity="0.7" />
+                  <circle cx="830" cy="45" r="1.5" opacity="0.85" />
+                  <circle cx="910" cy="80" r="1.2" opacity="0.6" />
+                  <!-- Starbursts (✦) in sky -->
+                  <text x="360" y="115" font-size="12" fill="#fed7aa" opacity="0.85" text-anchor="middle" filter="url(#map-soft-glow)">✦</text>
+                  <text x="470" y="315" font-size="14" fill="#fde047" opacity="0.9" text-anchor="middle" filter="url(#map-soft-glow)">✦</text>
+                  <text x="515" y="300" font-size="18" fill="#ffffff" opacity="0.95" text-anchor="middle" filter="url(#map-bright-glow)">★</text>
+                  <text x="580" y="275" font-size="11" fill="#c4b5fd" opacity="0.85" text-anchor="middle">✦</text>
+                  <text x="130" y="310" font-size="10" fill="#fbcfe8" opacity="0.75" text-anchor="middle">✧</text>
+                  <text x="830" y="325" font-size="11" fill="#99f6e4" opacity="0.75" text-anchor="middle">✧</text>
+                </g>
+
+                <!-- LAYER 2: Distant Mountains, Lake & Shoreline Silhouettes -->
+                <!-- Distant misty mountains -->
+                <path d="M 0,380 L 0,295 Q 110,250 200,285 Q 290,320 380,290 Q 480,260 570,295 Q 670,330 760,290 Q 860,250 960,305 L 960,380 Z" fill="#130d2a" opacity="0.95" />
+                <path d="M 0,380 L 0,320 Q 140,285 280,315 Q 420,345 560,310 Q 700,275 840,320 L 960,315 L 960,380 Z" fill="#181135" opacity="0.9" />
+
+                <!-- Dreamy Lake Base -->
+                <rect x="0" y="375" width="960" height="165" fill="url(#dm-lake-grad)" />
+
+                <!-- Calm Water Surface Ripple Reflections -->
+                <g class="lake-ripples" opacity="0.75" aria-hidden="true">
+                  <line x1="120" y1="410" x2="280" y2="410" stroke="#a78bfa" stroke-width="1.5" stroke-dasharray="16 10" opacity="0.4" />
+                  <line x1="200" y1="428" x2="420" y2="428" stroke="#f472b6" stroke-width="1.8" stroke-dasharray="24 12" opacity="0.45" />
+                  <line x1="380" y1="450" x2="620" y2="450" stroke="#fde047" stroke-width="2" stroke-dasharray="28 14" opacity="0.5" />
+                  <line x1="560" y1="432" x2="780" y2="432" stroke="#38bdf8" stroke-width="1.8" stroke-dasharray="22 12" opacity="0.45" />
+                  <line x1="680" y1="415" x2="860" y2="415" stroke="#93c5fd" stroke-width="1.5" stroke-dasharray="18 10" opacity="0.4" />
+                  <!-- Subtle water glow reflection from above -->
+                  <ellipse cx="480" cy="425" rx="200" ry="25" fill="#fde047" opacity="0.08" filter="url(#map-halo)" />
+                </g>
+
+                <!-- Shoreline forested spits with glowing lanterns -->
+                <!-- Left Shoreline -->
+                <path d="M 0,375 Q 100,365 210,385 L 0,430 Z" fill="#0d0822" />
+                <!-- Evergreen pines on left shore -->
+                <g class="shore-pines-left" fill="#090518" aria-hidden="true">
+                  <polygon points="25,375 16,330 34,330" />
+                  <polygon points="50,375 42,320 58,320" />
+                  <polygon points="78,380 70,335 86,335" />
+                  <polygon points="110,385 103,345 117,345" />
+                  <polygon points="145,392 139,355 151,355" />
+                </g>
+                <!-- Glowing shoreline lanterns (warm golden lights on posts) -->
+                <g class="shore-lanterns" fill="#fde047" filter="url(#map-soft-glow)" aria-hidden="true">
+                  <line x1="32" y1="375" x2="32" y2="355" stroke="#3f3f46" stroke-width="1.5" />
+                  <circle cx="32" cy="353" r="3.5" />
+                  <circle cx="32" cy="353" r="8" fill="#fde047" opacity="0.35" filter="url(#map-soft-glow)" />
+
+                  <line x1="95" y1="382" x2="95" y2="363" stroke="#3f3f46" stroke-width="1.5" />
+                  <circle cx="95" cy="361" r="3.2" />
+                  <circle cx="95" cy="361" r="7.5" fill="#fde047" opacity="0.35" filter="url(#map-soft-glow)" />
+
+                  <line x1="160" y1="392" x2="160" y2="375" stroke="#3f3f46" stroke-width="1.5" />
+                  <circle cx="160" cy="373" r="2.8" />
+                  <circle cx="160" cy="373" r="7" fill="#fde047" opacity="0.35" filter="url(#map-soft-glow)" />
+                </g>
+
+                <!-- Right Shoreline -->
+                <path d="M 960,375 Q 860,365 760,385 L 960,430 Z" fill="#0d0822" />
+                <g class="shore-pines-right" fill="#090518" aria-hidden="true">
+                  <polygon points="935,375 926,330 944,330" />
+                  <polygon points="908,375 900,320 916,320" />
+                  <polygon points="880,380 872,335 888,335" />
+                  <polygon points="845,385 838,345 852,345" />
+                  <polygon points="810,392 804,355 816,355" />
+                </g>
+                <g class="shore-lanterns-right" fill="#fde047" filter="url(#map-soft-glow)" aria-hidden="true">
+                  <line x1="920" y1="375" x2="920" y2="355" stroke="#3f3f46" stroke-width="1.5" />
+                  <circle cx="920" cy="353" r="3.5" />
+                  <circle cx="920" cy="353" r="8" fill="#fde047" opacity="0.35" filter="url(#map-soft-glow)" />
+
+                  <line x1="860" y1="382" x2="860" y2="363" stroke="#3f3f46" stroke-width="1.5" />
+                  <circle cx="860" cy="361" r="3.2" />
+                  <circle cx="860" cy="361" r="7.5" fill="#fde047" opacity="0.35" filter="url(#map-soft-glow)" />
+
+                  <!-- Distant fairytale shore castle silhouette on far right -->
+                  <rect x="910" y="325" width="22" height="26" fill="#1e113d" rx="2" />
+                  <polygon points="921,305 910,325 932,325" fill="#2d1a58" />
+                  <circle cx="921" cy="304" r="2" fill="#fde047" />
+                  <rect x="918" y="332" width="6" height="8" rx="2" fill="#fde047" opacity="0.85" />
+                </g>
+
+                <!-- LAYER 3: The Delivery Route (Curved Dashed Orbit connecting all 4 destinations) -->
+                <g class="route-paths" id="route-paths" aria-hidden="true">
+                  <!-- Broad ethereal stardust glow path underneath -->
+                  <path id="route-core-glow"
+                    d="M 200,135 C 380,55 580,55 760,135 C 870,205 850,295 740,360 C 580,430 380,430 220,360 C 110,295 90,205 200,135 Z"
+                    stroke="rgba(253, 224, 71, 0.3)"
+                    stroke-width="9"
+                    fill="none"
+                    filter="url(#map-bright-glow)" />
+
+                  <!-- Main luminous dashed route path -->
+                  <path id="route-loop"
+                    d="M 200,135 C 380,55 580,55 760,135 C 870,205 850,295 740,360 C 580,430 380,430 220,360 C 110,295 90,205 200,135 Z"
+                    stroke="#ffffff"
+                    stroke-width="2.8"
+                    stroke-dasharray="10 9"
+                    stroke-linecap="round"
+                    fill="none"
+                    filter="url(#map-soft-glow)"
+                    opacity="0.94" />
+
+                  <!-- Active pulse route layer (energized on travel) -->
+                  <path id="route-active-pulse"
+                    d="M 200,135 C 380,55 580,55 760,135 C 870,205 850,295 740,360 C 580,430 380,430 220,360 C 110,295 90,205 200,135 Z"
+                    stroke="#fde047"
+                    stroke-width="3.2"
+                    stroke-dasharray="12 12"
+                    stroke-linecap="round"
+                    fill="none"
+                    opacity="0" />
+
+                  <!-- Sparkling constellation nodes along the route curve -->
+                  <g class="route-nodes" fill="#ffffff" filter="url(#map-soft-glow)">
+                    <circle cx="480" cy="80" r="4" fill="#fde047" />
+                    <text x="480" y="84" font-size="9" fill="#ffffff" text-anchor="middle">✦</text>
+
+                    <circle cx="810" cy="250" r="4" fill="#fde047" />
+                    <text x="810" y="254" font-size="9" fill="#ffffff" text-anchor="middle">✦</text>
+
+                    <circle cx="480" cy="415" r="4" fill="#fde047" />
+                    <text x="480" y="419" font-size="9" fill="#ffffff" text-anchor="middle">✦</text>
+
+                    <circle cx="150" cy="250" r="4" fill="#fde047" />
+                    <text x="150" y="254" font-size="9" fill="#ffffff" text-anchor="middle">✦</text>
+                  </g>
+                </g>
+
+                <!-- LAYER 4: The Four Distinct Magical Destinations -->
+
+                <!-- ==========================================
+                     DESTINATION 1: CLOUD KINGDOM (Top-Left)
+                     ========================================== -->
+                <g class="map-destination" id="dest-cloud" data-dest="cloud" role="button" tabindex="0" aria-label="Cloud Kingdom — click to send Pip here">
+                  <!-- Magical pink-violet atmospheric glow halo -->
+                  <circle cx="200" cy="120" r="95" fill="url(#dm-cloud-halo)" class="dest-halo" />
+
+                  <!-- Floating cloud island base puffs -->
+                  <g class="cloud-island-base" filter="url(#map-soft-glow)" opacity="0.95">
+                    <ellipse cx="200" cy="140" rx="85" ry="30" fill="#c4b5fd" opacity="0.5" />
+                    <ellipse cx="150" cy="132" rx="42" ry="24" fill="#e9d5ff" opacity="0.8" />
+                    <ellipse cx="250" cy="132" rx="42" ry="24" fill="#e9d5ff" opacity="0.8" />
+                    <ellipse cx="200" cy="128" rx="55" ry="28" fill="url(#dm-cloud-puff-grad)" />
+                    <!-- Fluffy cumulus cloud contours -->
+                    <circle cx="135" cy="124" r="20" fill="#ffffff" opacity="0.95" />
+                    <circle cx="172" cy="114" r="26" fill="#ffffff" />
+                    <circle cx="225" cy="112" r="28" fill="#ffffff" />
+                    <circle cx="265" cy="120" r="22" fill="#ffffff" opacity="0.95" />
+                  </g>
+
+                  <!-- Illuminated pastel castle/palace spires -->
+                  <g class="cloud-castle" transform="translate(200, 115)">
+                    <!-- Castle central keep -->
+                    <rect x="-28" y="-42" width="56" height="42" fill="url(#dm-castle-spire)" rx="3" />
+                    <!-- Arched glowing gate & windows -->
+                    <path d="M -8,0 Q 0,-14 8,0 Z" fill="#fde047" filter="url(#map-soft-glow)" />
+                    <ellipse cx="-15" cy="-22" rx="3.8" ry="5.5" fill="#fde047" filter="url(#map-soft-glow)" />
+                    <ellipse cx="15" cy="-22" rx="3.8" ry="5.5" fill="#fde047" filter="url(#map-soft-glow)" />
+                    <ellipse cx="0" cy="-28" rx="4.2" ry="6.5" fill="#fef08a" filter="url(#map-soft-glow)" />
+
+                    <!-- Left outer tower -->
+                    <rect x="-38" y="-50" width="15" height="50" fill="url(#dm-castle-spire)" rx="2" />
+                    <polygon points="-30,-70 -40,-50 -20,-50" fill="#f472b6" />
+                    <circle cx="-30" cy="-71" r="2.5" fill="#fde047" filter="url(#map-soft-glow)" />
+
+                    <!-- Right outer tower -->
+                    <rect x="23" y="-50" width="15" height="50" fill="url(#dm-castle-spire)" rx="2" />
+                    <polygon points="30,-70 20,-50 40,-50" fill="#f472b6" />
+                    <circle cx="30" cy="-71" r="2.5" fill="#fde047" filter="url(#map-soft-glow)" />
+
+                    <!-- Center high spire & crystal turret -->
+                    <polygon points="0,-82 -13,-42 13,-42" fill="#fbcfe8" />
+                    <polygon points="0,-82 0,-42 13,-42" fill="#ec4899" opacity="0.5" />
+                    <circle cx="0" cy="-83" r="4" fill="#ffffff" filter="url(#map-bright-glow)" />
+                    <text x="0" y="-81" font-size="9" fill="#fde047" text-anchor="middle">★</text>
+                  </g>
+
+                  <!-- Destination Interactive Badge Pill -->
+                  <g class="dest-badge-group" transform="translate(200, 185)">
+                    <!-- Pulsing outer ring -->
+                    <circle cx="0" cy="0" r="26" fill="none" stroke="#c084fc" stroke-width="2" class="dest-pulse-ring" />
+                    <!-- Button circle with gradient and icon -->
+                    <circle cx="0" cy="0" r="20" fill="#7e22ce" stroke="#fbcfe8" stroke-width="2" class="dest-disc" filter="url(#map-soft-glow)" />
+                    <text x="0" y="7" font-size="18" text-anchor="middle" class="dest-icon" aria-hidden="true">☁️</text>
+
+                    <!-- Text Labels (high contrast, crisp & clear) -->
+                    <text x="0" y="34" class="dest-title" text-anchor="middle">Cloud Kingdom</text>
+                    <text x="0" y="49" class="dest-subtitle" text-anchor="middle">Fluffy clouds and peaceful lullabies await.</text>
+                  </g>
+                </g>
+
+                <!-- ==========================================
+                     DESTINATION 2: MOON GARDEN (Top-Right)
+                     ========================================== -->
+                <g class="map-destination" id="dest-moon" data-dest="moon" role="button" tabindex="0" aria-label="Moon Garden — click to send Pip here">
+                  <!-- Magical golden-amber atmospheric glow halo -->
+                  <circle cx="760" cy="120" r="95" fill="url(#dm-moon-glow)" class="dest-halo" />
+
+                  <!-- Floating island rock base with grass and vines -->
+                  <g class="moon-island-base" transform="translate(760, 135)">
+                    <path d="M -75,0 Q -65,42 -20,52 Q 0,60 25,48 Q 70,38 75,0 Z" fill="url(#dm-garden-earth)" />
+                    <!-- Hanging glowing root vines -->
+                    <path d="M -38,32 Q -36,54 -40,64" stroke="#166534" stroke-width="2" fill="none" />
+                    <path d="M 10,38 Q 15,58 8,68" stroke="#166534" stroke-width="2" fill="none" />
+                    <path d="M 42,28 Q 48,48 45,58" stroke="#166534" stroke-width="1.8" fill="none" />
+                    <!-- Lush grassy plateau -->
+                    <ellipse cx="0" cy="0" rx="76" ry="17" fill="#15803d" />
+                    <ellipse cx="0" cy="-2" rx="70" ry="13" fill="#22c55e" opacity="0.6" />
+                  </g>
+
+                  <!-- Giant Golden Crescent Moon & Blooming Tree/Pavilion -->
+                  <g class="moon-landmark" transform="translate(760, 115)">
+                    <!-- Huge glowing golden crescent moon cradling the garden -->
+                    <path d="M 18,-62 C 62,-52 72,0 42,32 C 20,54 -5,52 -20,42 C 10,42 32,22 30,-10 C 28,-32 8,-52 18,-62 Z"
+                      fill="url(#dm-crescent-moon)"
+                      filter="url(#map-bright-glow)" />
+
+                    <!-- Blooming mystical garden trees with golden & pink blossoms -->
+                    <circle cx="-30" cy="-14" r="20" fill="#fde047" opacity="0.85" filter="url(#map-soft-glow)" />
+                    <circle cx="-42" cy="-6" r="15" fill="#f472b6" opacity="0.9" />
+                    <circle cx="-18" cy="-20" r="14" fill="#fef08a" opacity="0.95" />
+                    <circle cx="-14" cy="-6" r="13" fill="#fb7185" opacity="0.85" />
+                    <!-- Trunk -->
+                    <path d="M -30,2 L -30,-10" stroke="#451a03" stroke-width="3.8" stroke-linecap="round" />
+
+                    <!-- Cozy gazebo/pavilion with warm lantern -->
+                    <polygon points="5,-22 -10,-8 20,-8" fill="#f59e0b" />
+                    <rect x="-7" y="-8" width="14" height="11" fill="#78350f" rx="1" />
+                    <circle cx="0" cy="-3" r="3.2" fill="#fde047" filter="url(#map-bright-glow)" />
+                  </g>
+
+                  <!-- Destination Interactive Badge Pill -->
+                  <g class="dest-badge-group" transform="translate(760, 185)">
+                    <circle cx="0" cy="0" r="26" fill="none" stroke="#fbbf24" stroke-width="2" class="dest-pulse-ring" />
+                    <circle cx="0" cy="0" r="20" fill="#b45309" stroke="#fef08a" stroke-width="2" class="dest-disc" filter="url(#map-soft-glow)" />
+                    <text x="0" y="7" font-size="18" text-anchor="middle" class="dest-icon" aria-hidden="true">🌙</text>
+
+                    <!-- Text Labels -->
+                    <text x="0" y="34" class="dest-title" text-anchor="middle">Moon Garden</text>
+                    <text x="0" y="49" class="dest-subtitle" text-anchor="middle">A silver garden where dreams bloom.</text>
+                  </g>
+                </g>
+
+                <!-- ==========================================
+                     DESTINATION 3: PILLOW MOUNTAIN (Bottom-Left)
+                     ========================================== -->
+                <g class="map-destination" id="dest-pillow" data-dest="pillow" role="button" tabindex="0" aria-label="Pillow Mountain — click to send Pip here">
+                  <!-- Soft magenta-purple atmospheric glow halo -->
+                  <circle cx="220" cy="370" r="95" fill="url(#dm-pillow-halo)" class="dest-halo" />
+
+                  <!-- Floating island crag with cloud fluff encircling base -->
+                  <g class="pillow-island-base" transform="translate(220, 375)">
+                    <path d="M -78,0 Q -58,45 -10,60 Q 25,55 78,0 Z" fill="url(#dm-mountain-rock)" />
+                    <!-- Fluffy cloud pillows underneath -->
+                    <ellipse cx="-42" cy="16" rx="34" ry="15" fill="#e9d5ff" opacity="0.85" filter="url(#map-soft-glow)" />
+                    <ellipse cx="42" cy="16" rx="34" ry="15" fill="#e9d5ff" opacity="0.85" filter="url(#map-soft-glow)" />
+                    <ellipse cx="0" cy="22" rx="52" ry="17" fill="#ffffff" opacity="0.95" />
+                  </g>
+
+                  <!-- Soft Snowy Mountain Peaks & Alpine Chalets -->
+                  <g class="pillow-peaks" transform="translate(220, 360)">
+                    <!-- Back peak -->
+                    <polygon points="24,-55 -12,0 60,0" fill="#334155" />
+                    <polygon points="24,-55 8,-25 40,-25" fill="url(#dm-pillow-snow)" />
+
+                    <!-- Main high peak (soft pillowy snow cap) -->
+                    <polygon points="-24,-70 -76,5 28,5" fill="#475569" />
+                    <!-- Pillowy rounded snow crest -->
+                    <path d="M -24,-70 Q -5,-38 -5,-24 Q -24,-28 -42,-30 Q -52,-46 -24,-70 Z" fill="url(#dm-pillow-snow)" filter="url(#map-soft-glow)" />
+                    <circle cx="-24,-68" r="4.5" fill="#ffffff" />
+
+                    <!-- Cozy alpine chalets with glowing amber windows -->
+                    <polygon points="-5,-4 -14,10 4,10" fill="#991b1b" />
+                    <rect x="-11" y="10" width="13" height="9" fill="#78350f" rx="1" />
+                    <rect x="-7" y="12" width="4.5" height="4.5" fill="#fde047" filter="url(#map-soft-glow)" />
+
+                    <!-- Second tiny chalet with chimney puff -->
+                    <rect x="23" y="6" width="11" height="9" fill="#451a03" rx="1" />
+                    <polygon points="28.5,0 19,6 38,6" fill="#b91c1c" />
+                    <rect x="26" y="8" width="4.5" height="4.5" fill="#fef08a" filter="url(#map-soft-glow)" />
+                    <circle cx="34" cy="-2" r="2" fill="#ffffff" opacity="0.6" />
+                    <circle cx="36" cy="-6" r="2.8" fill="#ffffff" opacity="0.4" />
+                  </g>
+
+                  <!-- Destination Interactive Badge Pill -->
+                  <g class="dest-badge-group" transform="translate(220, 425)">
+                    <circle cx="0" cy="0" r="26" fill="none" stroke="#e879f9" stroke-width="2" class="dest-pulse-ring" />
+                    <circle cx="0" cy="0" r="20" fill="#86198f" stroke="#f5d0fe" stroke-width="2" class="dest-disc" filter="url(#map-soft-glow)" />
+                    <text x="0" y="7" font-size="18" text-anchor="middle" class="dest-icon" aria-hidden="true">⛰️</text>
+
+                    <!-- Text Labels -->
+                    <text x="0" y="34" class="dest-title" text-anchor="middle">Pillow Mountain</text>
+                    <text x="0" y="49" class="dest-subtitle" text-anchor="middle">Soft slopes for the sweetest dreams.</text>
+                  </g>
+                </g>
+
+                <!-- ==========================================
+                     DESTINATION 4: STAR HARBOR (Bottom-Right)
+                     ========================================== -->
+                <g class="map-destination" id="dest-star" data-dest="star" role="button" tabindex="0" aria-label="Star Harbor — click to send Pip here">
+                  <!-- Magical cyan-turquoise atmospheric glow halo -->
+                  <circle cx="740" cy="370" r="95" fill="url(#dm-star-halo)" class="dest-halo" />
+
+                  <!-- Floating island with glowing aqua harbor waters -->
+                  <g class="star-island-base" transform="translate(740, 375)">
+                    <path d="M -76,0 Q -62,42 -14,52 Q 15,56 72,0 Z" fill="url(#dm-mountain-rock)" />
+                    <!-- Luminous turquoise lagoon water & ripples -->
+                    <ellipse cx="14" cy="5" rx="58" ry="18" fill="url(#dm-harbor-water)" filter="url(#map-soft-glow)" />
+                    <ellipse cx="14" cy="6" rx="40" ry="11" fill="#a5f3fc" opacity="0.6" />
+                    <!-- Harbor rock cliffs on left -->
+                    <ellipse cx="-42" cy="-2" rx="34" ry="14" fill="#334155" />
+                  </g>
+
+                  <!-- Striped Lighthouse, Beacon Beam, Dock & Giant Stars -->
+                  <g class="harbor-landmark" transform="translate(740, 360)">
+                    <!-- Soft warm lighthouse light beam sweeping across water -->
+                    <polygon points="-40,-58 -105,-38 -120,-10 -40,-52" fill="#fef08a" opacity="0.3" filter="url(#map-soft-glow)" />
+
+                    <!-- Nautical Stone Lighthouse -->
+                    <rect x="-46" y="-52" width="13" height="46" fill="url(#dm-lighthouse-grad)" rx="1" />
+                    <!-- Red horizontal safety stripes -->
+                    <rect x="-46" y="-42" width="13" height="7.5" fill="#e11d48" />
+                    <rect x="-46" y="-25" width="13" height="7.5" fill="#e11d48" />
+                    <!-- Lantern room with glowing beacon -->
+                    <rect x="-49" y="-60" width="19" height="9" fill="#0f172a" rx="2" />
+                    <rect x="-46" y="-58" width="13" height="6.5" fill="#fde047" filter="url(#map-bright-glow)" />
+                    <polygon points="-39.5,-68 -50,-60 -29,-60" fill="#0f172a" />
+                    <circle cx="-39.5" cy="-69" r="2.2" fill="#fde047" />
+
+                    <!-- Wooden pier/wharf extending out into water -->
+                    <rect x="-22" y="-4" width="44" height="6.5" fill="#78350f" rx="1" />
+                    <!-- Wooden pilings into water -->
+                    <line x1="-14" y1="3" x2="-14" y2="16" stroke="#451a03" stroke-width="2.2" />
+                    <line x1="2" y1="3" x2="2" y2="16" stroke="#451a03" stroke-width="2.2" />
+                    <line x1="16" y1="3" x2="16" y2="16" stroke="#451a03" stroke-width="2.2" />
+
+                    <!-- Giant Glowing Golden Stars Floating in Harbor Lagoon -->
+                    <g class="harbor-floating-stars" filter="url(#map-bright-glow)">
+                      <text x="16" y="-6" font-size="19" fill="#fde047" text-anchor="middle">⭐</text>
+                      <text x="40" y="7" font-size="15" fill="#fef08a" text-anchor="middle">⭐</text>
+                    </g>
+                  </g>
+
+                  <!-- Destination Interactive Badge Pill -->
+                  <g class="dest-badge-group" transform="translate(740, 425)">
+                    <circle cx="0" cy="0" r="26" fill="none" stroke="#38bdf8" stroke-width="2" class="dest-pulse-ring" />
+                    <circle cx="0" cy="0" r="20" fill="#0284c7" stroke="#bae6fd" stroke-width="2" class="dest-disc" filter="url(#map-soft-glow)" />
+                    <text x="0" y="7" font-size="18" text-anchor="middle" class="dest-icon" aria-hidden="true">⭐</text>
+
+                    <!-- Text Labels -->
+                    <text x="0" y="34" class="dest-title" text-anchor="middle">Star Harbor</text>
+                    <text x="0" y="49" class="dest-subtitle" text-anchor="middle">Guiding stars and calm waves.</text>
+                  </g>
+                </g>
+
+                <!-- LAYER 5 & 6: Dedicated Traveler Layer above all scenery -->
+                <g id="traveler-layer" class="traveler-layer">
+                  <!-- Dream Trail Sparkle Particles behind Pip -->
+                  <g id="dream-trail" aria-hidden="true">
+                    <!-- Shimmering starbursts & stardust circles (dynamically positioned by script) -->
+                    <text id="trail-star-1" x="-100" y="-100" font-size="18" fill="#fde047" text-anchor="middle" opacity="0" filter="url(#map-bright-glow)">✦</text>
+                    <text id="trail-star-2" x="-100" y="-100" font-size="14" fill="#ffffff" text-anchor="middle" opacity="0" filter="url(#map-soft-glow)">★</text>
+                    <text id="trail-star-3" x="-100" y="-100" font-size="12" fill="#f472b6" text-anchor="middle" opacity="0">✦</text>
+                    <text id="trail-star-4" x="-100" y="-100" font-size="10" fill="#99f6e4" text-anchor="middle" opacity="0">✧</text>
+                    <circle id="trail-1" cx="-100" cy="-100" r="7" fill="#fde047" opacity="0" filter="url(#map-soft-glow)" />
+                    <circle id="trail-2" cx="-100" cy="-100" r="6" fill="#f472b6" opacity="0" filter="url(#map-soft-glow)" />
+                    <circle id="trail-3" cx="-100" cy="-100" r="5" fill="#c084fc" opacity="0" />
+                    <circle id="trail-4" cx="-100" cy="-100" r="4" fill="#38bdf8" opacity="0" />
+                    <circle id="trail-5" cx="-100" cy="-100" r="3" fill="#ffffff" opacity="0" />
+                    <circle id="trail-6" cx="-100" cy="-100" r="2.2" fill="#fde047" opacity="0" />
+                  </g>
+
+                  <!-- Pip Traveler (Larger, Clearly Visible & Faithful to Official Sprite) -->
+                  <g id="pip-traveler" transform="translate(200, 135)" aria-label="Pip delivering dreams">
+                    <g class="pip-floater">
+                      <!-- Radiant stardust flight halo -->
+                      <circle r="36" fill="url(#pip-stardust-halo)" filter="url(#map-bright-glow)" />
+                      <circle r="22" fill="rgba(255, 255, 255, 0.3)" />
+
+                      <!-- Pip's Magic Cloud Pillow carriage -->
+                      <g class="pip-cloud-bed">
+                        <ellipse cx="0" cy="18" rx="26" ry="10" fill="#c4b5fd" opacity="0.75" />
+                        <ellipse cx="-12" cy="16" rx="14" ry="7.5" fill="#e9d5ff" opacity="0.9" />
+                        <ellipse cx="12" cy="16" rx="14" ry="7.5" fill="#e9d5ff" opacity="0.9" />
+                        <ellipse cx="0" cy="14" rx="20" ry="7" fill="#ffffff" opacity="0.98" />
+                      </g>
+
+                      <!-- Pip Official Figure (enlarged by ~25% for high visibility) -->
+                      <g class="pip-figure" id="pip-figure" transform="scale(1.24) translate(0, -2)">
+                        <!-- Nightcap in midnight violet, with golden star & pink bow -->
+                        <path d="M -10,-4 L -22,-26 L 4,-7 Z" fill="#292448" />
+                        <circle cx="-22" cy="-26" r="4.2" fill="#fde047" filter="url(#map-soft-glow)" />
+                        <!-- Pink bow on cap -->
+                        <ellipse cx="-8" cy="-4" rx="4.8" ry="3" fill="#f472b6" transform="rotate(-20, -8, -4)" />
+                        <ellipse cx="-3.5" cy="-4" rx="4.8" ry="3" fill="#f472b6" transform="rotate(20, -3.5, -4)" />
+                        <circle cx="-5.8" cy="-4" r="2.2" fill="#ec4899" />
+
+                        <!-- Smooth friendly skull head with crisp outline -->
+                        <ellipse cx="0" cy="5" rx="15" ry="14" fill="#fff5e9" stroke="#e6dcce" stroke-width="1.3" />
+
+                        <!-- Eye sockets with warm amber glints -->
+                        <ellipse cx="-6" cy="4" rx="4.8" ry="5.2" fill="#292448" />
+                        <ellipse cx="6" cy="4" rx="4.8" ry="5.2" fill="#292448" />
+                        <circle cx="-5.5" cy="4" r="1.8" fill="#fde047" filter="url(#map-soft-glow)" />
+                        <circle cx="6.5" cy="4" r="1.8" fill="#fde047" filter="url(#map-soft-glow)" />
+                        <circle cx="-6.4" cy="3" r="0.9" fill="#ffffff" />
+                        <circle cx="5.6" cy="3" r="0.9" fill="#ffffff" />
+
+                        <!-- Cheerful rosy cheeks -->
+                        <ellipse cx="-10.5" cy="10" rx="3.6" ry="2.2" fill="#f472b6" opacity="0.8" />
+                        <ellipse cx="10.5" cy="10" rx="3.6" ry="2.2" fill="#f472b6" opacity="0.8" />
+
+                        <!-- Tiny happy crooked smile -->
+                        <path d="M -4.2,11.2 Q 0,14.8 4.2,11.2" stroke="#292448" stroke-width="1.4" fill="none" stroke-linecap="round" />
+                      </g>
+                    </g>
+                  </g>
+                </g>
+              </svg>
+            </div>
+
+            <!-- Deliveries This Visit Progress Panel (matching reference image) -->
+            <div class="dream-map-footer" id="dream-map-footer">
+              <div class="delivery-status-panel">
+                <div class="delivery-current-badge" id="delivery-current-badge">
+                  <span class="loc-pin" aria-hidden="true">📍</span>
+                  <span class="loc-label">Pip is at:</span>
+                  <strong class="loc-name" id="current-loc-name">Cloud Kingdom</strong>
+                </div>
+                <div class="delivery-status-divider" aria-hidden="true"></div>
+                <div class="delivery-message-wrap" aria-live="polite">
+                  <span class="delivery-status-icon" id="delivery-status-icon" aria-hidden="true">🗺️</span>
+                  <span class="delivery-status-text" id="delivery-status-text">Click any destination on the map to send Pip on a dream delivery!</span>
+                </div>
+              </div>
+
+              <div class="deliveries-progress-wrap">
+                <div class="deliveries-tracker">
+                  <span class="tracker-label" id="tracker-count-label">0/4 destinations completed</span>
+                  <div class="tracker-dots" id="tracker-dots" role="group" aria-label="Deliveries progress: 0 of 4 completed">
+                    <button type="button" class="tracker-dot" data-dest="cloud" title="Cloud Kingdom" aria-label="Cloud Kingdom: not visited">
+                      <span class="dot-inner">☁️</span>
+                    </button>
+                    <button type="button" class="tracker-dot" data-dest="moon" title="Moon Garden" aria-label="Moon Garden: not visited">
+                      <span class="dot-inner">🌙</span>
+                    </button>
+                    <button type="button" class="tracker-dot" data-dest="star" title="Star Harbor" aria-label="Star Harbor: not visited">
+                      <span class="dot-inner">⭐</span>
+                    </button>
+                    <button type="button" class="tracker-dot" data-dest="pillow" title="Pillow Mountain" aria-label="Pillow Mountain: not visited">
+                      <span class="dot-inner">⛰️</span>
+                    </button>
+                  </div>
+                  <span class="tracker-sparkle" aria-hidden="true">✦</span>
+                </div>
+
+                <div class="delivery-goal-badge" id="delivery-goal-badge" aria-live="polite">
+                  <span class="goal-icon" aria-hidden="true">🎁</span>
+                  <span class="goal-text" id="delivery-goal-text">Visit all destinations to complete your dream delivery!</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Dream descriptions (Expanded narrative storytelling cards) -->
+            <div class="dream-info" id="dream-info" aria-live="polite">
+              <div class="dream-card active" data-dest="none">
+                <p>🗺️ Click any destination on the map to send Pip on a dream delivery! Watch the route glow as Pip travels through the night sky.</p>
+              </div>
+              <div class="dream-card" data-dest="cloud" hidden>
+                <div class="delivery-badge">✨ Delivery Complete · Cloud Kingdom</div>
+                <h4>☁️ Cloud Kingdom</h4>
+                <p>High above the tallest trees, Cloud Kingdom floats in soft silver mist. Pip delivers dreams made of laughter and weightlessness — here, every sleeper can fly.</p>
+              </div>
+              <div class="dream-card" data-dest="moon" hidden>
+                <div class="delivery-badge">✨ Delivery Complete · Moon Garden</div>
+                <h4>🌙 Moon Garden</h4>
+                <p>In the Moon Garden, flowers bloom only at midnight and smell of warm honey. Pip plants tonight's wishes here so they'll grow into tomorrow's good feelings.</p>
+              </div>
+              <div class="dream-card" data-dest="star" hidden>
+                <div class="delivery-badge">✨ Delivery Complete · Star Harbor</div>
+                <h4>⭐ Star Harbor</h4>
+                <p>Every falling star lands in Star Harbor. Pip docks the dream-ship, unloads crates of golden light, and personally wraps each dream in stardust before delivery.</p>
+              </div>
+              <div class="dream-card" data-dest="pillow" hidden>
+                <div class="delivery-badge">✨ Delivery Complete · Pillow Mountain</div>
+                <h4>🏔️ Pillow Mountain</h4>
+                <p>The softest place in the whole night sky. Pip loves saving the most comfortable dreams for Pillow Mountain — the kind that make you smile even after waking.</p>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- PROJECT 4: RATTLE & BLOCK TOYS -->
+        <article class="project-card" id="rattle-blocks" aria-labelledby="toys-title">
+          <div class="project-card-header">
+            <div class="project-icon-wrap" aria-hidden="true">
+              <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg" style="width:70px;height:70px">
+                <rect x="8" y="42" width="26" height="26" rx="6" fill="#F4A7C8" stroke="#ffffff" stroke-width="2" />
+                <text x="21" y="60" font-size="14" fill="#ffffff" text-anchor="middle" font-weight="bold">⭐</text>
+                <rect x="22" y="16" width="26" height="26" rx="6" fill="#FFC875" stroke="#ffffff" stroke-width="2" />
+                <text x="35" y="34" font-size="14" fill="#ffffff" text-anchor="middle" font-weight="bold">🌙</text>
+                <!-- Rattle -->
+                <circle cx="58" cy="30" r="14" fill="#9FD8F2" stroke="#ffffff" stroke-width="2" opacity="0.9" />
+                <circle cx="58" cy="30" r="5" fill="#FFEAA7" />
+                <path d="M54,42 L46,68" stroke="#C8B8F0" stroke-width="4" stroke-linecap="round" />
+                <circle cx="44" cy="70" r="4" fill="#FFC875" />
+              </svg>
+            </div>
+            <div class="project-header-text">
+              <h3 id="toys-title">🧸 Rattle &amp; Block Toys</h3>
+              <p>Stackable stardust blocks &amp; musical rattle</p>
+            </div>
+          </div>
+          <div class="project-body">
+            <p class="project-desc">Play with Pip's favorite nursery toys! Stack glowing dream blocks into cosmic towers or shake the stardust rattle for magical celestial chimes.</p>
+
+            <div class="toys-playground-grid">
+              <!-- Column 1: Stackable Dream Blocks -->
+              <div class="toys-col blocks-playground-col">
+                <div class="toys-col-header">
+                  <h4>🧱 Stackable Dream Blocks</h4>
+                  <span id="tower-count-badge" class="badge">0 / 6 blocks stacked</span>
+                </div>
+                <p class="toys-subtext">Pick a magical block from Pip's nursery shelf to stack it onto the tower.</p>
+
+                <!-- Block Picker Palette -->
+                <div class="blocks-picker" role="group" aria-label="Dream blocks palette">
+                  <button type="button" class="block-pick-btn" data-block-type="star" data-name="Star Block" aria-label="Add Star Block (Gold)">
+                    <span class="block-pick-icon">⭐</span>
+                    <span class="block-pick-label">Star</span>
+                  </button>
+                  <button type="button" class="block-pick-btn" data-block-type="moon" data-name="Moon Block" aria-label="Add Moon Block (Lavender)">
+                    <span class="block-pick-icon">🌙</span>
+                    <span class="block-pick-label">Moon</span>
+                  </button>
+                  <button type="button" class="block-pick-btn" data-block-type="cloud" data-name="Cloud Block" aria-label="Add Cloud Block (Sky Blue)">
+                    <span class="block-pick-icon">☁️</span>
+                    <span class="block-pick-label">Cloud</span>
+                  </button>
+                  <button type="button" class="block-pick-btn" data-block-type="slumber" data-name="Slumber Block" aria-label="Add Slumber Block (Indigo)">
+                    <span class="block-pick-icon">💤</span>
+                    <span class="block-pick-label">Slumber</span>
+                  </button>
+                  <button type="button" class="block-pick-btn" data-block-type="lullaby" data-name="Lullaby Block" aria-label="Add Lullaby Block (Teal)">
+                    <span class="block-pick-icon">🎵</span>
+                    <span class="block-pick-label">Lullaby</span>
+                  </button>
+                  <button type="button" class="block-pick-btn" data-block-type="wish" data-name="Wish Block" aria-label="Add Wish Block (Pink)">
+                    <span class="block-pick-icon">💖</span>
+                    <span class="block-pick-label">Wish</span>
+                  </button>
+                </div>
+
+                <!-- Tower Stage -->
+                <div class="tower-stage-wrap">
+                  <div class="tower-sky-backdrop" aria-hidden="true">
+                    <span class="ts-star">✦</span><span class="ts-star">★</span><span class="ts-star">✧</span>
+                  </div>
+                  <div class="tower-stack" id="blocks-tower" role="region" aria-label="Dream block tower" data-count="0">
+                    <!-- Blocks injected dynamically here -->
+                  </div>
+                  <div class="tower-pedestal" aria-hidden="true">
+                    <span class="pedestal-wood">✦ Midnight Nursery Floor ✦</span>
+                  </div>
+                </div>
+
+                <!-- Actions -->
+                <div class="blocks-actions">
+                  <button type="button" class="btn btn-secondary btn-sm" id="remove-block-btn" disabled>
+                    ↩️ Remove Top Block
+                  </button>
+                  <button type="button" class="btn btn-secondary btn-sm" id="topple-blocks-btn" disabled>
+                    💥 Topple &amp; Reset
+                  </button>
+                </div>
+                <div id="blocks-status" class="sr-only" aria-live="polite">Tower is empty. Choose a block to begin building.</div>
+              </div>
+
+              <!-- Column 2: Magical Stardust Rattle -->
+              <div class="toys-col rattle-playground-col">
+                <div class="toys-col-header">
+                  <h4>✨ Magical Stardust Rattle</h4>
+                  <span id="rattle-count-badge" class="badge">✨ Shaken 0 times</span>
+                </div>
+                <p class="toys-subtext">Click or tap Pip's celestial chime rattle to scatter soft stardust and gentle lullaby chimes.</p>
+
+                <!-- Interactive Rattle Stage -->
+                <div class="rattle-stage-wrap">
+                  <button type="button" class="rattle-interactive-box" id="shake-rattle-btn" aria-label="Shake Pip's Stardust Rattle">
+                    <div class="rattle-particles" id="rattle-particles" aria-hidden="true"></div>
+                    <div class="rattle-svg-wrap" id="rattle-svg-wrap">
+                      <svg class="rattle-svg" viewBox="0 0 160 220" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                        <defs>
+                          <radialGradient id="rattle-glow" cx="50%" cy="50%" r="50%">
+                            <stop offset="0%" stop-color="#ffffff" stop-opacity="0.9" />
+                            <stop offset="40%" stop-color="#FFD166" stop-opacity="0.7" />
+                            <stop offset="100%" stop-color="#9FD8F2" stop-opacity="0" />
+                          </radialGradient>
+                          <linearGradient id="rattle-handle" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#C8B8F0" />
+                            <stop offset="50%" stop-color="#9A83DB" />
+                            <stop offset="100%" stop-color="#5B4A8E" />
+                          </linearGradient>
+                          <linearGradient id="rattle-ring" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#FFEAA7" />
+                            <stop offset="100%" stop-color="#FFC875" />
+                          </linearGradient>
+                        </defs>
+                        <!-- Back Glow -->
+                        <circle cx="80" cy="70" r="60" fill="url(#rattle-glow)" opacity="0.6" />
+                        <!-- Rattle Handle -->
+                        <path d="M74,115 L74,185 Q74,195 80,195 Q86,195 86,185 L86,115 Z" fill="url(#rattle-handle)" stroke="#ffffff" stroke-width="2" />
+                        <!-- Bottom Ribbon Rings -->
+                        <circle cx="80" cy="195" r="12" fill="none" stroke="url(#rattle-ring)" stroke-width="4" />
+                        <circle cx="80" cy="195" r="5" fill="#F4A7C8" />
+                        <!-- Little Ribbon Bow -->
+                        <path d="M72,130 C60,120 56,138 72,135 Z" fill="#F4A7C8" />
+                        <path d="M88,130 C100,120 104,138 88,135 Z" fill="#F4A7C8" />
+                        <circle cx="80" cy="133" r="3.5" fill="#FFEAA7" />
+                        <!-- Main Rattle Globe (Glass sphere with beads) -->
+                        <circle cx="80" cy="70" r="46" fill="#1C1838" stroke="#C8B8F0" stroke-width="3" opacity="0.85" />
+                        <!-- Translucent highlight -->
+                        <ellipse cx="66" cy="52" rx="16" ry="10" fill="#ffffff" opacity="0.45" transform="rotate(-25 66 52)" />
+                        <!-- Pip's Skull Face inside rattle -->
+                        <g class="rattle-skull" transform="translate(80, 70)">
+                          <ellipse cx="0" cy="-2" rx="22" ry="18" fill="#F5F3FF" stroke="#3D2952" stroke-width="2" />
+                          <circle cx="-8" cy="-3" r="4.5" fill="#17172F" />
+                          <circle cx="8" cy="-3" r="4.5" fill="#17172F" />
+                          <!-- Eye twinkle -->
+                          <circle cx="-6.5" cy="-4.5" r="1.5" fill="#ffffff" />
+                          <circle cx="9.5" cy="-4.5" r="1.5" fill="#ffffff" />
+                          <!-- Cute little nose -->
+                          <polygon points="0,-1 -2,2 2,2" fill="#3D2952" />
+                          <!-- Rosy cheeks -->
+                          <ellipse cx="-12" cy="4" rx="3.5" ry="2" fill="#F4A7C8" opacity="0.85" />
+                          <ellipse cx="12" cy="4" rx="3.5" ry="2" fill="#F4A7C8" opacity="0.85" />
+                          <!-- Nightcap on head -->
+                          <path d="M-14,-14 Q0,-26 14,-14 Q10,-24 -6,-24 Z" fill="#9A83DB" />
+                          <circle cx="-8" cy="-24" r="3" fill="#FFC875" />
+                        </g>
+                        <!-- Floating star beads in orb -->
+                        <circle cx="56" cy="92" r="6" fill="#FFC875" />
+                        <circle cx="102" cy="90" r="5" fill="#F4A7C8" />
+                        <circle cx="80" cy="100" r="5" fill="#9FD8F2" />
+                      </svg>
+                    </div>
+                  </button>
+                  <p id="rattle-feedback" class="rattle-feedback">Give Pip's rattle a gentle tap or shake!</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- PROJECT 5: BEDTIME STORYBOOK -->
+        <article class="project-card" id="bedtime-storybook" aria-labelledby="storybook-title">
+          <div class="project-card-header">
+            <div class="project-icon-wrap" aria-hidden="true">
+              <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg" style="width:70px;height:70px">
+                <rect x="14" y="16" width="52" height="48" rx="6" fill="#292448" stroke="#C8B8F0" stroke-width="2" />
+                <path d="M40,16 L40,64" stroke="#C8B8F0" stroke-width="2" />
+                <!-- Left page bookmark -->
+                <path d="M26,16 L26,30 L32,25 L38,30 L38,16" fill="#F4A7C8" />
+                <!-- Star on right page -->
+                <polygon points="56,32 58,38 64,38 59,42 61,48 56,44 51,48 53,42 48,38 54,38" fill="#FFC875" />
+              </svg>
+            </div>
+            <div class="project-header-text">
+              <h3 id="storybook-title">📖 Bedtime Storybook</h3>
+              <p>Pip and the Lost Little Star</p>
+            </div>
+          </div>
+          <div class="project-body">
+            <p class="project-desc">Read a cozy illustrated bedtime story with Pip! Help a fallen little star find its way back home to the celestial nursery before sunrise.</p>
+
+            <div class="storybook-container">
+              <!-- Top Storybook Bar -->
+              <div class="storybook-topbar">
+                <span id="story-page-badge" class="badge">Page 1 of 4</span>
+                <div class="story-dots" id="story-dots" role="tablist" aria-label="Story pages">
+                  <button type="button" class="story-dot is-active" data-page="0" role="tab" aria-selected="true" aria-label="Page 1: A Glimmer in the Grass"></button>
+                  <button type="button" class="story-dot" data-page="1" role="tab" aria-selected="false" aria-label="Page 2: The Moon Garden's Whisper"></button>
+                  <button type="button" class="story-dot" data-page="2" role="tab" aria-selected="false" aria-label="Page 3: The Golden Route to Star Harbor"></button>
+                  <button type="button" class="story-dot" data-page="3" role="tab" aria-selected="false" aria-label="Page 4: Safe in the Constellation"></button>
+                </div>
+              </div>
+
+              <!-- Story Stage -->
+              <div class="storybook-stage" id="storybook-stage">
+                <!-- Page 1 -->
+                <div class="story-page is-active" data-page="0">
+                  <div class="story-art">
+                    <svg viewBox="0 0 500 280" xmlns="http://www.w3.org/2000/svg" class="story-svg" aria-label="Pip finding a glowing star in the night grass">
+                      <defs>
+                        <linearGradient id="st-sky-1" x1="0" y1="0" x2="0" y2="1">
+                          <stop offset="0%" stop-color="#0e0a24" />
+                          <stop offset="100%" stop-color="#24184c" />
+                        </linearGradient>
+                        <radialGradient id="st-glow-1" cx="50%" cy="50%" r="50%">
+                          <stop offset="0%" stop-color="#FFEAA7" stop-opacity="1" />
+                          <stop offset="60%" stop-color="#FFC875" stop-opacity="0.6" />
+                          <stop offset="100%" stop-color="#FFC875" stop-opacity="0" />
+                        </radialGradient>
+                      </defs>
+                      <rect width="500" height="280" rx="12" fill="url(#st-sky-1)" />
+                      <!-- Distant Observatory silhouette -->
+                      <path d="M380,220 L380,150 Q410,120 440,150 L440,220 Z" fill="#140f2b" />
+                      <ellipse cx="410" cy="145" rx="22" ry="16" fill="#1f183d" stroke="#C8B8F0" stroke-width="1.5" />
+                      <line x1="410" y1="145" x2="435" y2="120" stroke="#FFC875" stroke-width="3" stroke-linecap="round" />
+                      <!-- Gentle grassy hill -->
+                      <path d="M0,280 Q200,200 500,240 L500,280 Z" fill="#181e42" />
+                      <path d="M0,280 Q250,220 500,255 L500,280 Z" fill="#202a57" />
+                      <!-- Stars in sky -->
+                      <circle cx="80" cy="50" r="1.5" fill="#ffffff" />
+                      <circle cx="160" cy="30" r="2" fill="#FFC875" />
+                      <circle cx="280" cy="65" r="1.5" fill="#ffffff" />
+                      <circle cx="340" cy="40" r="2.5" fill="#FFEAA7" />
+                      <!-- Crescent moon -->
+                      <path d="M50,40 A18,18 0 0,0 68,58 A15,15 0 0,1 50,40 Z" fill="#FFEAA7" />
+                      <!-- Baby Pip Kneeling -->
+                      <g transform="translate(180, 160)">
+                        <!-- Pip gown -->
+                        <path d="M10,45 Q-15,65 -5,80 L45,80 Q55,65 30,45 Z" fill="#9A83DB" stroke="#ffffff" stroke-width="2" />
+                        <!-- Pip Skull -->
+                        <ellipse cx="20" cy="25" rx="22" ry="20" fill="#F5F3FF" stroke="#2B1A42" stroke-width="2.5" />
+                        <!-- Eyes looking down at star -->
+                        <ellipse cx="14" cy="26" rx="4.5" ry="5.5" fill="#17172F" />
+                        <ellipse cx="28" cy="26" rx="4.5" ry="5.5" fill="#17172F" />
+                        <circle cx="16" cy="28" r="1.5" fill="#ffffff" />
+                        <circle cx="30" cy="28" r="1.5" fill="#ffffff" />
+                        <!-- Cheeks -->
+                        <ellipse cx="8" cy="34" rx="3.5" ry="2" fill="#F4A7C8" />
+                        <ellipse cx="32" cy="34" rx="3.5" ry="2" fill="#F4A7C8" />
+                        <!-- Pip hands gently outstretched -->
+                        <circle cx="2" cy="56" r="5" fill="#F5F3FF" stroke="#2B1A42" stroke-width="1.5" />
+                        <circle cx="38" cy="56" r="5" fill="#F5F3FF" stroke="#2B1A42" stroke-width="1.5" />
+                      </g>
+                      <!-- The Fallen Little Star (Spark) -->
+                      <circle cx="140" cy="235" r="28" fill="url(#st-glow-1)" />
+                      <polygon points="140,222 144,232 154,232 146,238 149,248 140,242 131,248 134,238 126,232 136,232" fill="#FFEAA7" stroke="#ffffff" stroke-width="1.5" />
+                      <!-- Star face -->
+                      <circle cx="138" cy="236" r="1.5" fill="#5A3A00" />
+                      <circle cx="142" cy="236" r="1.5" fill="#5A3A00" />
+                      <path d="M138,239 Q140,241 142,239" stroke="#5A3A00" stroke-width="1" fill="none" />
+                    </svg>
+                  </div>
+                  <div class="story-content">
+                    <h4>Chapter 1: A Glimmer in the Grass</h4>
+                    <p class="story-text">Late at night, when all the nursery was asleep, Pip spotted a tiny golden twinkle behind the observatory shrubs. It was a fallen star named Spark, no bigger than a thimble, shivering softly in the midnight dew.</p>
+                  </div>
+                </div>
+
+                <!-- Page 2 -->
+                <div class="story-page" data-page="1">
+                  <div class="story-art">
+                    <svg viewBox="0 0 500 280" xmlns="http://www.w3.org/2000/svg" class="story-svg" aria-label="Pip gently placing the star in the warm lantern in the Moon Garden">
+                      <defs>
+                        <linearGradient id="st-sky-2" x1="0" y1="0" x2="0" y2="1">
+                          <stop offset="0%" stop-color="#140b2e" />
+                          <stop offset="100%" stop-color="#3b2064" />
+                        </linearGradient>
+                      </defs>
+                      <rect width="500" height="280" rx="12" fill="url(#st-sky-2)" />
+                      <!-- Moon Garden night blossoms & lavender terrace -->
+                      <path d="M0,280 Q150,210 500,240 L500,280 Z" fill="#241846" />
+                      <!-- Glowing midnight blossoms -->
+                      <circle cx="80" cy="230" r="12" fill="#F4A7C8" opacity="0.6" />
+                      <circle cx="80" cy="230" r="6" fill="#FFEAA7" />
+                      <circle cx="120" cy="245" r="10" fill="#9FD8F2" opacity="0.6" />
+                      <circle cx="120" cy="245" r="5" fill="#ffffff" />
+                      <circle cx="420" cy="235" r="14" fill="#C8B8F0" opacity="0.6" />
+                      <circle cx="420" cy="235" r="7" fill="#FFEAA7" />
+                      <!-- Big warm silver moon above Moon Garden -->
+                      <circle cx="380" cy="80" r="42" fill="#FFEAA7" opacity="0.25" />
+                      <circle cx="380" cy="80" r="28" fill="#FFF5E9" />
+                      <!-- Pip holding the lantern consulting Moon Garden -->
+                      <g transform="translate(180, 130)">
+                        <path d="M10,45 Q-15,65 -5,90 L45,90 Q55,65 30,45 Z" fill="#9A83DB" stroke="#ffffff" stroke-width="2" />
+                        <ellipse cx="20" cy="25" rx="22" ry="20" fill="#F5F3FF" stroke="#2B1A42" stroke-width="2.5" />
+                        <!-- Joyful curious eyes -->
+                        <path d="M10,26 Q14,20 18,26" stroke="#17172F" stroke-width="2.5" fill="none" stroke-linecap="round" />
+                        <path d="M24,26 Q28,20 32,26" stroke="#17172F" stroke-width="2.5" fill="none" stroke-linecap="round" />
+                        <ellipse cx="8" cy="32" rx="3.5" ry="2" fill="#F4A7C8" />
+                        <ellipse cx="32" cy="32" rx="3.5" ry="2" fill="#F4A7C8" />
+                      </g>
+                      <!-- The Stardust Lantern with Spark inside -->
+                      <g transform="translate(260, 140)">
+                        <ellipse cx="30" cy="40" rx="35" ry="35" fill="#FFEAA7" opacity="0.35" />
+                        <rect x="12" y="10" width="36" height="55" rx="6" fill="#1F163D" stroke="#FFEAA7" stroke-width="2.5" opacity="0.9" />
+                        <line x1="30" y1="0" x2="30" y2="10" stroke="#FFEAA7" stroke-width="3" />
+                        <!-- Spark glowing warmly inside -->
+                        <polygon points="30,30 33,38 41,38 35,43 37,51 30,46 23,51 25,43 19,38 27,38" fill="#FFC875" stroke="#ffffff" stroke-width="1.2" />
+                        <circle cx="28.5" cy="42" r="1.2" fill="#5A3A00" />
+                        <circle cx="31.5" cy="42" r="1.2" fill="#5A3A00" />
+                      </g>
+                    </svg>
+                  </div>
+                  <div class="story-content">
+                    <h4>Chapter 2: The Moon Garden's Whisper</h4>
+                    <p class="story-text">Pip scooped up Spark into the warm brass lantern and carried him to the Moon Garden. The night-blooming lunar lilies and sleepy moon-moths whispered softly: "Spark belongs to the Great Dipper! Follow the golden dream route up to Star Harbor."</p>
+                  </div>
+                </div>
+
+                <!-- Page 3 -->
+                <div class="story-page" data-page="2">
+                  <div class="story-art">
+                    <svg viewBox="0 0 500 280" xmlns="http://www.w3.org/2000/svg" class="story-svg" aria-label="Pip following the golden dream route across the night sky">
+                      <defs>
+                        <linearGradient id="st-sky-3" x1="0" y1="0" x2="1" y2="1">
+                          <stop offset="0%" stop-color="#2D114D" />
+                          <stop offset="50%" stop-color="#552586" />
+                          <stop offset="100%" stop-color="#190F35" />
+                        </linearGradient>
+                      </defs>
+                      <rect width="500" height="280" rx="12" fill="url(#st-sky-3)" />
+                      <!-- Swirling Dream Nebula -->
+                      <path d="M-20,180 Q140,80 260,160 T520,100" fill="none" stroke="#F4A7C8" stroke-width="40" opacity="0.25" stroke-linecap="round" />
+                      <path d="M-20,130 Q180,220 340,110 T520,180" fill="none" stroke="#9FD8F2" stroke-width="25" opacity="0.3" stroke-linecap="round" />
+                      <!-- Golden Dream Delivery Route Line -->
+                      <path d="M 40,200 Q 180,80 320,140 T 480,90" fill="none" stroke="#FFC875" stroke-width="3" stroke-dasharray="8 6" opacity="0.9" />
+                      <circle cx="80" cy="40" r="3" fill="#ffffff" />
+                      <circle cx="160" cy="80" r="3.5" fill="#FFEAA7" />
+                      <circle cx="220" cy="50" r="3" fill="#ffffff" />
+                      <!-- Pip riding the Dream Cloud Glider -->
+                      <g transform="translate(190, 110)">
+                        <!-- Cloud Glider Base -->
+                        <ellipse cx="50" cy="65" rx="55" ry="18" fill="#F0EEF8" opacity="0.95" />
+                        <ellipse cx="25" cy="58" rx="28" ry="16" fill="#FFFFFF" />
+                        <ellipse cx="75" cy="58" rx="28" ry="16" fill="#FFFFFF" />
+                        <!-- Golden Glider wings -->
+                        <path d="M-10,60 Q-40,40 -20,80 Z" fill="#FFC875" opacity="0.85" />
+                        <path d="M110,60 Q140,40 120,80 Z" fill="#FFC875" opacity="0.85" />
+                        <!-- Pip in captain stance -->
+                        <path d="M35,35 L40,55 L60,55 L65,35 Z" fill="#9A83DB" stroke="#ffffff" stroke-width="1.5" />
+                        <ellipse cx="50" cy="22" rx="18" ry="16" fill="#F5F3FF" stroke="#2B1A42" stroke-width="2" />
+                        <circle cx="44" cy="22" r="3.5" fill="#17172F" />
+                        <circle cx="56" cy="22" r="3.5" fill="#17172F" />
+                        <!-- Spark humming in front of glider -->
+                        <polygon points="90,45 93,52 101,52 95,57 97,65 90,60 83,65 85,57 79,52 87,52" fill="#FFEAA7" />
+                      </g>
+                    </svg>
+                  </div>
+                  <div class="story-content">
+                    <h4>Chapter 3: The Golden Route to Star Harbor</h4>
+                    <p class="story-text">Unfurling the cloud-glider's starlight wings, Pip soared along the glowing golden dream delivery route. Gliding past Pillow Mountain and through lavender stardust clouds, Spark hummed with joy as his home constellation came into sight.</p>
+                  </div>
+                </div>
+
+                <!-- Page 4 -->
+                <div class="story-page" data-page="3">
+                  <div class="story-art">
+                    <svg viewBox="0 0 500 280" xmlns="http://www.w3.org/2000/svg" class="story-svg" aria-label="Spark safely back with his parent constellation while Pip waves">
+                      <defs>
+                        <radialGradient id="st-burst-4" cx="50%" cy="50%" r="50%">
+                          <stop offset="0%" stop-color="#ffffff" stop-opacity="1" />
+                          <stop offset="35%" stop-color="#FFEAA7" stop-opacity="0.85" />
+                          <stop offset="70%" stop-color="#FFC875" stop-opacity="0.4" />
+                          <stop offset="100%" stop-color="#3B2064" stop-opacity="0" />
+                        </radialGradient>
+                      </defs>
+                      <rect width="500" height="280" rx="12" fill="#130B29" />
+                      <!-- Big golden glow in the constellation -->
+                      <circle cx="340" cy="85" r="75" fill="url(#st-burst-4)" />
+                      <!-- Golden constellation lines -->
+                      <line x1="220" y1="130" x2="280" y2="110" stroke="#FFEAA7" stroke-width="2" />
+                      <line x1="280" y1="110" x2="340" y2="85" stroke="#FFEAA7" stroke-width="2.5" />
+                      <line x1="340" y1="85" x2="410" y2="70" stroke="#FFEAA7" stroke-width="2" />
+                      <line x1="410" y1="70" x2="450" y2="120" stroke="#FFEAA7" stroke-width="2" />
+                      <!-- Parent stars -->
+                      <circle cx="220" cy="130" r="5" fill="#FFEAA7" />
+                      <circle cx="280" cy="110" r="6" fill="#FFEAA7" />
+                      <circle cx="410" cy="70" r="5.5" fill="#FFEAA7" />
+                      <circle cx="450" cy="120" r="5" fill="#FFEAA7" />
+                      <!-- Spark the Hero in center! -->
+                      <polygon points="340,68 346,80 358,80 348,88 352,100 340,92 328,100 332,88 322,80 334,80" fill="#ffffff" stroke="#FFC875" stroke-width="2" />
+                      <circle cx="338" cy="85" r="1.5" fill="#5A3A00" />
+                      <circle cx="342" cy="85" r="1.5" fill="#5A3A00" />
+                      <!-- Stardust shower -->
+                      <circle cx="310" cy="150" r="2" fill="#FFEAA7" opacity="0.8" />
+                      <circle cx="350" cy="170" r="2.5" fill="#FFC875" opacity="0.9" />
+                      <circle cx="380" cy="140" r="1.5" fill="#ffffff" opacity="0.8" />
+                      <circle cx="290" cy="180" r="2" fill="#FFEAA7" opacity="0.7" />
+                      <!-- Pip on observatory balcony waving goodnight -->
+                      <g transform="translate(100, 160)">
+                        <rect x="0" y="60" width="80" height="60" rx="4" fill="#241846" stroke="#C8B8F0" stroke-width="1.5" />
+                        <line x1="10" y1="60" x2="10" y2="100" stroke="#C8B8F0" stroke-width="2" />
+                        <line x1="30" y1="60" x2="30" y2="100" stroke="#C8B8F0" stroke-width="2" />
+                        <line x1="50" y1="60" x2="50" y2="100" stroke="#C8B8F0" stroke-width="2" />
+                        <line x1="70" y1="60" x2="70" y2="100" stroke="#C8B8F0" stroke-width="2" />
+                        <!-- Pip waving -->
+                        <path d="M25,25 Q15,45 20,60 L50,60 Q55,45 45,25 Z" fill="#9A83DB" stroke="#ffffff" stroke-width="1.5" />
+                        <ellipse cx="35" cy="15" rx="16" ry="15" fill="#F5F3FF" stroke="#2B1A42" stroke-width="2" />
+                        <!-- Joyful smile -->
+                        <circle cx="30" cy="15" r="3" fill="#17172F" />
+                        <circle cx="40" cy="15" r="3" fill="#17172F" />
+                        <!-- Waving hand -->
+                        <circle cx="58" cy="10" r="4.5" fill="#F5F3FF" stroke="#2B1A42" stroke-width="1.2" />
+                      </g>
+                    </svg>
+                  </div>
+                  <div class="story-content">
+                    <h4>Chapter 4: Safe in the Constellation</h4>
+                    <p class="story-text">With one last joyful hop, Spark clicked right back into his constellation spot, shining brighter than ever! The sky rained warm, golden sleep-dust over the observatory, and Pip glided safely home to tuck into bed for the sweetest dreams.</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Controls -->
+              <div class="storybook-controls">
+                <button type="button" class="btn btn-secondary btn-sm" id="story-prev-btn" disabled aria-label="Previous story page">
+                  ◀ Previous Page
+                </button>
+                <button type="button" class="btn btn-primary btn-sm" id="story-next-btn" aria-label="Next story page">
+                  Next Page ▶
+                </button>
+                <button type="button" class="btn btn-accent btn-sm" id="story-restart-btn" style="display:none;" aria-label="Read story again from the beginning">
+                  ✨ Read Again
+                </button>
+              </div>
+              <div id="story-status" class="sr-only" aria-live="polite">Reading Chapter 1: A Glimmer in the Grass</div>
+            </div>
+          </div>
+        </article>
+
+        <!-- PROJECT 6: PIP'S GROWTH CHART -->
+        <article class="project-card" id="growth-chart" aria-labelledby="growth-title">
+          <div class="project-card-header">
+            <div class="project-icon-wrap" aria-hidden="true">
+              <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg" style="width:70px;height:70px">
+                <!-- Wooden ruler shape -->
+                <rect x="24" y="8" width="32" height="64" rx="4" fill="#C89D74" stroke="#8A5B36" stroke-width="2" />
+                <!-- Measurement ticks -->
+                <line x1="24" y1="18" x2="38" y2="18" stroke="#4A2E16" stroke-width="2" />
+                <line x1="24" y1="28" x2="33" y2="28" stroke="#4A2E16" stroke-width="1.5" />
+                <line x1="24" y1="38" x2="38" y2="38" stroke="#4A2E16" stroke-width="2" />
+                <line x1="24" y1="48" x2="33" y2="48" stroke="#4A2E16" stroke-width="1.5" />
+                <line x1="24" y1="58" x2="38" y2="58" stroke="#4A2E16" stroke-width="2" />
+                <!-- Star badge pinned -->
+                <circle cx="44" cy="22" r="7" fill="#FFC875" stroke="#FFFFFF" stroke-width="1.5" />
+                <text x="44" y="26" font-size="10" fill="#3D2952" text-anchor="middle" font-weight="bold">★</text>
+              </svg>
+            </div>
+            <div class="project-header-text">
+              <h3 id="growth-title">📏 Pip's Growth Chart</h3>
+              <p>Measuring dream milestones in the Midnight Nursery</p>
+            </div>
+          </div>
+          <div class="project-body">
+            <p class="project-desc">How tall is a Skull Baby? In the Midnight Observatory, Pip isn't measured in inches or feet, but in dreams and wonder! Click each milestone to explore Pip's journey.</p>
+
+            <div class="growth-chart-container">
+              <div class="growth-chart-layout">
+                <!-- Left: Interactive Vertical Celestial Ruler -->
+                <div class="growth-ruler-wrap" role="group" aria-label="Nursery growth ruler milestones">
+                  <div class="growth-ruler-wood">
+                    <!-- Pip Sliding Traveler Marker -->
+                    <div class="ruler-pip-marker" id="ruler-pip-marker" aria-hidden="true">
+                      <span class="marker-pip-head">💀</span>
+                      <span class="marker-pointer">▶</span>
+                    </div>
+
+                    <!-- 4 Interactive Milestones along ruler (ordered from top to bottom) -->
+                    <button type="button" class="milestone-notch is-active" data-milestone="4" aria-label="Milestone 4: 4 Dreams Tall - Keeper of the Night Sky">
+                      <span class="notch-indicator">✦</span>
+                      <span class="notch-label">4 Dreams</span>
+                    </button>
+                    <button type="button" class="milestone-notch" data-milestone="3" aria-label="Milestone 3: 3 Dreams Tall - Junior Dream Engineer">
+                      <span class="notch-indicator">✦</span>
+                      <span class="notch-label">3 Dreams</span>
+                    </button>
+                    <button type="button" class="milestone-notch" data-milestone="2" aria-label="Milestone 2: 2 Dreams Tall - Little Explorer">
+                      <span class="notch-indicator">✦</span>
+                      <span class="notch-label">2 Dreams</span>
+                    </button>
+                    <button type="button" class="milestone-notch" data-milestone="1" aria-label="Milestone 1: 1 Dream Tall - First Moonlight">
+                      <span class="notch-indicator">✦</span>
+                      <span class="notch-label">1 Dream</span>
+                    </button>
+                  </div>
+                </div>
+
+                <!-- Right: Milestone Detail Showcase Card -->
+                <div class="growth-detail-card" id="growth-detail-card">
+                  <div class="milestone-meta-row">
+                    <span id="growth-badge" class="badge">4 Dreams Tall</span>
+                    <span id="growth-age" class="growth-age-tag">Present Night · Fully Certified</span>
+                  </div>
+
+                  <h4 id="growth-milestone-title">Keeper of the Night Sky</h4>
+
+                  <div class="milestone-icon-banner" id="growth-icon-banner" aria-hidden="true">
+                    👑 🌌 ⭐
+                  </div>
+
+                  <p id="growth-desc" class="growth-desc">
+                    Now guarding the entire Midnight Observatory! Pip has mastered every dream delivery route, coordinates the lullaby music boxes, and ensures every sleeper tucked in across the world has a gentle star to watch over them.
+                  </p>
+
+                  <blockquote id="growth-quote" class="growth-quote">
+                    "No matter how many dreams tall we grow, the best feeling is tucking someone in with sweet thoughts."
+                  </blockquote>
+                </div>
+              </div>
+
+              <!-- Disclaimer note -->
+              <p class="growth-disclaimer">
+                ✦ <em>Note: Fictional growth milestones recorded in celestial dream units. Pip remains forever baby-sized and skull-sweet.</em>
+              </p>
+              <div id="growth-status" class="sr-only" aria-live="polite">Showing Milestone 4: Keeper of the Night Sky.</div>
+            </div>
+          </div>
+        </article>
+
+        <div class="retro-divider" aria-hidden="true">· · · ✦ · · ·</div>
+      </div>
+    </section>
+
+    <!-- ========== ORIGIN STORY ========== -->
+    <section id="story" class="story-section" aria-labelledby="story-title">
+      <div class="section-container">
+        <div class="section-header">
+          <div class="retro-badge">📖 Origin Story</div>
+          <h2 id="story-title">How Pip Became a Dream Engineer</h2>
+        </div>
+
+        <!-- Scene progress indicator -->
+        <div class="story-progress" role="tablist" aria-label="Story scenes">
+          <button class="scene-tab active" id="tab-0" data-scene="0" role="tab" aria-selected="true" aria-controls="scene-0">Scene 1</button>
+          <button class="scene-tab" id="tab-1" data-scene="1" role="tab" aria-selected="false" aria-controls="scene-1">Scene 2</button>
+          <button class="scene-tab" id="tab-2" data-scene="2" role="tab" aria-selected="false" aria-controls="scene-2">Scene 3</button>
+        </div>
+        <div class="scene-progress-dots" aria-hidden="true">
+          <span class="scene-dot active" data-scene="0"></span>
+          <span class="scene-dot" data-scene="1"></span>
+          <span class="scene-dot" data-scene="2"></span>
+        </div>
+
+        <!-- Story scenes -->
+        <div class="story-scenes">
+          <div class="story-scene active" id="scene-0" role="tabpanel" aria-labelledby="tab-0">
+            <div class="scene-illustration" aria-hidden="true">
+              <svg viewBox="0 0 220 180" class="scene-book-svg" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Scene 1: Pip catches a lost falling star">
+                <rect width="220" height="180" rx="16" fill="#1b1736"/>
+                <!-- Silver moon -->
+                <circle cx="175" cy="40" r="24" fill="#C8B8F0" opacity="0.3"/>
+                <circle cx="178" cy="38" r="20" fill="#FFF5E9"/>
+                <circle cx="186" cy="34" r="17" fill="#1b1736"/>
+                <!-- Stars -->
+                <circle cx="35" cy="30" r="1.5" fill="#FFC875"/>
+                <circle cx="75" cy="50" r="2" fill="#C8B8F0"/>
+                <circle cx="115" cy="25" r="1.5" fill="#FFF5E9"/>
+                <!-- Bedtime cloud -->
+                <ellipse cx="110" cy="148" rx="60" ry="18" fill="#292448" opacity="0.8"/>
+                <ellipse cx="110" cy="142" rx="45" ry="14" fill="#C8B8F0" opacity="0.5"/>
+                <ellipse cx="110" cy="138" rx="35" ry="10" fill="#FFF5E9" opacity="0.85"/>
+                <!-- Baby Pip sitting on cloud -->
+                <g transform="translate(110, 110)">
+                  <path d="M -12,-8 L 0,-28 L 12,-8 Z" fill="#292448"/>
+                  <circle cx="0" cy="-28" r="3.5" fill="#FFC875"/>
+                  <circle cx="-7" cy="-9" r="3" fill="#F4A7C8"/>
+                  <circle cx="-3.5" cy="-9" r="2" fill="#e87bb5"/>
+                  <ellipse cx="0" cy="0" rx="15" ry="14" fill="#FFF5E9" stroke="#E6DCCE" stroke-width="1"/>
+                  <ellipse cx="-5" cy="-1" rx="4.5" ry="5" fill="#292448"/>
+                  <ellipse cx="5" cy="-1" rx="4.5" ry="5" fill="#292448"/>
+                  <circle cx="-5" cy="-1" r="1.5" fill="#FFC875"/>
+                  <circle cx="5" cy="-1" r="1.5" fill="#FFC875"/>
+                  <ellipse cx="-8.5" cy="3.5" rx="3" ry="1.8" fill="#F4A7C8" opacity="0.6"/>
+                  <ellipse cx="8.5" cy="3.5" rx="3" ry="1.8" fill="#F4A7C8" opacity="0.6"/>
+                  <path d="M -3.5,5 Q 0,8 3.5,5" stroke="#292448" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+                  <ellipse cx="-13" cy="9" rx="3.5" ry="2.5" fill="#FFF5E9"/>
+                  <ellipse cx="13" cy="9" rx="3.5" ry="2.5" fill="#FFF5E9"/>
+                </g>
+                <!-- Falling star landing into Pip's hands -->
+                <path d="M 60,35 Q 90,65 110,118" stroke="#FFC875" stroke-width="1.8" stroke-dasharray="4 3" fill="none" opacity="0.7"/>
+                <g transform="translate(110, 118)">
+                  <circle r="8" fill="rgba(255, 200, 117, 0.4)"/>
+                  <circle r="4" fill="#FFC875"/>
+                  <circle r="1.5" fill="#FFFFFF"/>
+                </g>
+              </svg>
+            </div>
+            <div class="scene-content">
+              <span class="scene-number">Scene 1</span>
+              <h3>The First Dream</h3>
+              <p>
+                Pip wakes beneath a silver moon in a quiet nursery, not sure how long the nap lasted.
+                Outside, the stars are in full shift — spinning their slow nighttime circles.
+                Then a tiny light falls from the sky and lands, warm and trembling, in Pip's hands.
+                It's a dream that has lost its way. Small. Glowing. Waiting.
+                Pip holds it gently and thinks: <em>someone is sleeping, and this is meant for them.</em>
+              </p>
+            </div>
+          </div>
+
+          <div class="story-scene" id="scene-1" role="tabpanel" aria-labelledby="tab-1" hidden>
+            <div class="scene-illustration" aria-hidden="true">
+              <svg viewBox="0 0 220 180" class="scene-book-svg" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Scene 2: Pip discovers the music box, lantern, and star map in the workshop">
+                <rect width="220" height="180" rx="16" fill="#1b1736"/>
+                <rect x="75" y="15" width="70" height="45" rx="8" fill="#110e26" stroke="#292448" stroke-width="2"/>
+                <circle cx="95" cy="32" r="1" fill="#FFC875"/>
+                <circle cx="125" cy="28" r="1.5" fill="#C8B8F0"/>
+                <circle cx="110" cy="42" r="1" fill="#FFF5E9"/>
+                <rect x="25" y="125" width="170" height="12" rx="4" fill="#3d2810" stroke="#5a3a18" stroke-width="1.5"/>
+                <rect x="40" y="137" width="12" height="30" rx="2" fill="#2b1a0a"/>
+                <rect x="168" y="137" width="12" height="30" rx="2" fill="#2b1a0a"/>
+                <!-- Music box -->
+                <rect x="38" y="92" width="38" height="33" rx="5" fill="#292448" stroke="#C8B8F0" stroke-width="1.5"/>
+                <rect x="42" y="96" width="30" height="25" rx="3" fill="#17172F"/>
+                <circle cx="57" cy="108" r="6" fill="#C8B8F0" opacity="0.4"/>
+                <polygon points="55,104 55,112 62,108" fill="#FFC875"/>
+                <text x="50" y="82" font-size="10" fill="#FFC875">♪</text>
+                <text x="62" y="70" font-size="12" fill="#F4A7C8">♫</text>
+                <!-- Star chart -->
+                <rect x="88" y="112" width="44" height="14" rx="2" fill="#FFF5E9" transform="rotate(-5, 110, 118)"/>
+                <circle cx="98" cy="118" r="1.2" fill="#292448"/>
+                <circle cx="110" cy="116" r="1.2" fill="#292448"/>
+                <circle cx="122" cy="119" r="1.2" fill="#292448"/>
+                <line x1="98" y1="118" x2="110" y2="116" stroke="#C8B8F0" stroke-width="0.8" stroke-dasharray="2 1"/>
+                <line x1="110" y1="116" x2="122" y2="119" stroke="#C8B8F0" stroke-width="0.8" stroke-dasharray="2 1"/>
+                <!-- Lantern -->
+                <path d="M 152,85 L 148,125 L 176,125 L 172,85 Z" fill="#292448" stroke="#C8B8F0" stroke-width="1.5"/>
+                <rect x="150" y="80" width="24" height="5" rx="2" fill="#C8B8F0"/>
+                <circle cx="162" cy="105" r="16" fill="rgba(255, 200, 117, 0.35)"/>
+                <circle cx="162" cy="105" r="7" fill="#FFC875"/>
+                <circle cx="162" cy="105" r="3" fill="#FFFFFF"/>
+              </svg>
+            </div>
+            <div class="scene-content">
+              <span class="scene-number">Scene 2</span>
+              <h3>The Midnight Workshop</h3>
+              <p>
+                Deep in the nursery, Pip discovers a dusty old room.
+                On the workbench: an old music box that hums a half-forgotten tune,
+                a sleepy lantern whose glow changes colour when you whisper to it,
+                and a star-chart map drawn entirely from constellations.
+                Something stirs. Pip reaches for the music box and turns the tiny key.
+                The melody that floats out is small, but the dreams it carries are enormous.
+              </p>
+            </div>
+          </div>
+
+          <div class="story-scene" id="scene-2" role="tabpanel" aria-labelledby="tab-2" hidden>
+            <div class="scene-illustration" aria-hidden="true">
+              <svg viewBox="0 0 220 180" class="scene-book-svg" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Scene 3: Pip opens the Midnight Observatory with glowing stars around the doorway">
+                <rect width="220" height="180" rx="16" fill="#1b1736"/>
+                <!-- Observatory doorway arch -->
+                <path d="M 65,160 L 65,80 A 45,45 0 0,1 155,80 L 155,160 Z" fill="#110e26" stroke="#C8B8F0" stroke-width="2.5"/>
+                <!-- Glowing stars framing the doorway arch -->
+                <text x="56" y="115" font-size="12" fill="#FFC875">★</text>
+                <text x="62" y="75" font-size="10" fill="#F4A7C8">✦</text>
+                <text x="82" y="48" font-size="11" fill="#FFC875">★</text>
+                <text x="110" y="38" font-size="13" fill="#FFF5E9">✧</text>
+                <text x="138" y="48" font-size="11" fill="#FFC875">★</text>
+                <text x="156" y="75" font-size="10" fill="#F4A7C8">✦</text>
+                <text x="162" y="115" font-size="12" fill="#FFC875">★</text>
+                <!-- Sign -->
+                <rect x="75" y="58" width="70" height="16" rx="3" fill="#292448" stroke="#C8B8F0" stroke-width="1"/>
+                <text x="110" y="69" font-size="6.5" fill="#FFC875" font-family="Fredoka" text-anchor="middle" font-weight="600">OPEN AFTER BEDTIME</text>
+                <!-- Pip with telescope -->
+                <g transform="translate(110, 126)">
+                  <ellipse cx="0" cy="18" rx="22" ry="7" fill="#C8B8F0" opacity="0.6"/>
+                  <ellipse cx="0" cy="15" rx="16" ry="5" fill="#FFFFFF" opacity="0.9"/>
+                  <path d="M -10,-8 L 0,-26 L 10,-8 Z" fill="#292448"/>
+                  <circle cx="0" cy="-26" r="3" fill="#FFC875"/>
+                  <circle cx="-6" cy="-9" r="2.5" fill="#F4A7C8"/>
+                  <ellipse cx="0" cy="0" rx="13" ry="12" fill="#FFF5E9" stroke="#E6DCCE" stroke-width="0.8"/>
+                  <ellipse cx="-4.5" cy="-1" rx="3.5" ry="4" fill="#292448"/>
+                  <ellipse cx="4.5" cy="-1" rx="3.5" ry="4" fill="#292448"/>
+                  <circle cx="-4.5" cy="-1" r="1.2" fill="#FFC875"/>
+                  <circle cx="4.5" cy="-1" r="1.2" fill="#FFC875"/>
+                  <ellipse cx="-7.5" cy="3" rx="2.5" ry="1.5" fill="#F4A7C8" opacity="0.6"/>
+                  <ellipse cx="7.5" cy="3" rx="2.5" ry="1.5" fill="#F4A7C8" opacity="0.6"/>
+                  <path d="M -3,4.5 Q 0,7 3,4.5" stroke="#292448" stroke-width="1" fill="none" stroke-linecap="round"/>
+                  <polygon points="12,4 28,-10 32,-7 14,7" fill="#FFC875" stroke="#C87A30" stroke-width="0.8"/>
+                  <circle cx="30" cy="-8.5" r="3" fill="#9FD8F2" opacity="0.7"/>
+                </g>
+              </svg>
+            </div>
+            <div class="scene-content">
+              <span class="scene-number">Scene 3</span>
+              <h3>The Dream Engineer</h3>
+              <p>
+                By the time the morning star appears, Pip has a plan.
+                The old nursery becomes the Midnight Observatory — open every night
+                after bedtime for everyone who needs a little wonder.
+                Pip hangs a sign on the door, adjusts the nightcap, and sets to work:
+                Junior Dream Engineer, officially on duty.
+                Lullabies composed. Lanterns lit. Dreams delivered.
+                <em>The night shift has never been so good.</em>
+              </p>
+              <div class="scene-actions">
+                <a href="#dream-map" class="btn btn-primary scene-cta-btn">Join Pip on a Dream Delivery 🗺️</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Navigation -->
+        <div class="story-nav">
+          <button class="btn btn-ghost" id="story-prev" aria-label="Previous scene" disabled>← Previous</button>
+          <button class="btn btn-ghost" id="story-next" aria-label="Next scene">Next →</button>
+        </div>
+
+        <div class="retro-divider" aria-hidden="true">· · · ✦ · · ·</div>
+      </div>
+    </section>
+
+    <!-- ========== GUESTBOOK ========== -->
+    <section id="guestbook" class="guestbook-section" aria-labelledby="guestbook-title">
+      <div class="section-container">
+        <div class="section-header">
+          <div class="retro-badge">📝 Guestbook</div>
+          <h2 id="guestbook-title">Leave a Dream</h2>
+          <p class="section-subtitle">
+            Sign Pip's guestbook! <strong>Note:</strong> Messages are saved in your browser only
+            and are not shared with other visitors.
+          </p>
+        </div>
+
+        <div class="guestbook-layout">
+          <form class="guestbook-form" id="guestbook-form" novalidate aria-label="Add a guestbook entry">
+            <div class="form-group">
+              <label for="gb-name">Your Name (or a dream name) ✨</label>
+              <input
+                type="text"
+                id="gb-name"
+                name="name"
+                placeholder="e.g. Pip Fan, Dreamer #42..."
+                maxlength="40"
+                autocomplete="nickname"
+              />
+            </div>
+            <div class="form-group">
+              <label for="gb-message">Your Message 💌</label>
+              <textarea
+                id="gb-message"
+                name="message"
+                rows="3"
+                placeholder="Leave a little dream for Pip..."
+                maxlength="200"
+              ></textarea>
+              <span class="char-count" id="char-count">0 / 200</span>
+            </div>
+            <div class="form-error" id="form-error" role="alert" aria-live="polite"></div>
+            <button type="submit" class="btn btn-primary">Sign Guestbook 💫</button>
+          </form>
+
+          <div class="guestbook-entries" id="guestbook-entries" aria-live="polite" aria-label="Guestbook entries">
+            <div class="entries-empty" id="entries-empty">
+              <svg viewBox="0 0 64 64" width="48" height="48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="empty-cloud-icon">
+                <ellipse cx="32" cy="40" rx="22" ry="12" fill="#292448" opacity="0.6"/>
+                <ellipse cx="32" cy="36" rx="16" ry="9" fill="#C8B8F0" opacity="0.7"/>
+                <circle cx="32" cy="22" r="10" fill="#FFF5E9"/>
+                <text x="32" y="26" font-size="11" text-anchor="middle" fill="#17172F">💤</text>
+              </svg>
+              <p><strong>The dream ledger is quiet tonight...</strong></p>
+              <p>Be the first dreamer to leave a wish under Pip's pillow! 🌙</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== EASTER EGG ========== -->
+    <!-- Hidden constellation zone - discoverable via the secret stars -->
+    <section class="easter-egg-section" aria-label="Secret constellation" id="secret-section">
+      <div class="constellation-hint" id="constellation-hint" aria-hidden="true">
+        <span class="hint-star" data-star="1" title="✧" tabindex="0" role="button" aria-label="mysterious star">✧</span>
+        <span class="hint-star" data-star="2" title="✦" tabindex="0" role="button" aria-label="mysterious star">✦</span>
+        <span class="hint-star" data-star="3" title="★" tabindex="0" role="button" aria-label="mysterious star">★</span>
+      </div>
+
+      <!-- Easter egg overlay -->
+      <div class="easter-egg-overlay" id="easter-egg-overlay" hidden role="dialog" aria-modal="true" aria-labelledby="egg-title">
+        <div class="egg-content">
+          <canvas id="constellation-canvas" width="380" height="240" aria-hidden="true"></canvas>
+          <div class="egg-message">
+            <h3 id="egg-title">You found Pip's secret dream. 🌟</h3>
+            <p>Keep a little magic for yourself.</p>
+            <div class="egg-stars" aria-hidden="true">✦ ★ ✧ ★ ✦</div>
+          </div>
+          <button class="btn btn-ghost egg-close" id="egg-close" type="button" aria-label="Close secret message" onclick="if(window.pmoCloseEasterEgg){window.pmoCloseEasterEgg();}else{var el=document.getElementById('easter-egg-overlay');if(el){el.style.display='none';el.hidden=true;el.setAttribute('hidden','');el.classList.remove('active');document.body.style.overflow='';}}">Close ✕</button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="footer-inner">
+      <div class="footer-pip">
+        <svg class="footer-mini-pip" width="40" height="40" viewBox="0 0 40 40" aria-hidden="true">
+          <!-- Nightcap -->
+          <path d="M 8 16 L 20 2 L 32 16 Z" fill="#292448" />
+          <circle cx="20" cy="2" r="3" fill="#FFC875" />
+          <circle cx="14" cy="15" r="2.5" fill="#F4A7C8" />
+          <!-- Skull face -->
+          <ellipse cx="20" cy="24" rx="14" ry="12" fill="#FFF5E9" />
+          <!-- Eye sockets with warm amber glints -->
+          <ellipse cx="14" cy="23" rx="4.5" ry="5" fill="#292448" />
+          <ellipse cx="26" cy="23" rx="4.5" ry="5" fill="#292448" />
+          <circle cx="14.5" cy="23" r="1.5" fill="#FFC875" />
+          <circle cx="26.5" cy="23" r="1.5" fill="#FFC875" />
+          <!-- Rosy cheeks & smile -->
+          <ellipse cx="10" cy="27" rx="3" ry="1.8" fill="#F4A7C8" opacity="0.6" />
+          <ellipse cx="30" cy="27" rx="3" ry="1.8" fill="#F4A7C8" opacity="0.6" />
+          <path d="M 16 28 Q 20 31 24 28" stroke="#292448" stroke-width="1.2" fill="none" stroke-linecap="round" />
+        </svg>
+        <div>
+          <strong>Pip's Midnight Observatory</strong>
+          <p>Tiny skull. Big dreams. Open after bedtime.</p>
+        </div>
+      </div>
+
+      <div class="footer-badges" aria-label="Observatory Web Badges">
+        <span class="retro-pixel-badge">✦ Made with Dream Dust ✦</span>
+        <span class="retro-pixel-badge">✦ Best Viewed at Midnight ✦</span>
+        <span class="retro-pixel-badge">✦ No Nightmares ✦</span>
+        <span class="retro-pixel-badge">✦ Handcrafted with ♥ ✦</span>
+      </div>
+
+      <div class="footer-credits">
+        <p>Built for <strong>haX.baby</strong> — Baby's First Website Hackathon · Track 1</p>
+        <p>Pip character artwork by <a href="https://hax.baby" target="_blank" rel="noopener noreferrer">haX.baby</a> — used with attribution.</p>
+        <p>Fonts: <a href="https://fonts.google.com/specimen/Fredoka" target="_blank" rel="noopener noreferrer">Fredoka</a> &amp; <a href="https://fonts.google.com/specimen/Nunito" target="_blank" rel="noopener noreferrer">Nunito</a> via Google Fonts.</p>
+      </div>
+
+      <p class="footer-copy">
+        <small>© 2026 — Pip's Midnight Observatory. A hackathon project. Pip artwork © haX.baby.</small>
+      </p>
+    </div>
+  </footer>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
