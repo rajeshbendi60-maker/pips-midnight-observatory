@@ -1,0 +1,42 @@
+<svg viewBox="0 0 140 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Pip Junior Dream Engineer official portrait">
+  <defs>
+    <filter id="portrait-glow">
+      <feGaussianBlur stdDeviation="3" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Starry Nightcap -->
+  <polygon points="70,8 48,58 92,58" fill="#292448" />
+  <circle cx="70" cy="8" r="6" fill="#FFC875" filter="url(#portrait-glow)" />
+  <text x="62" y="35" font-size="7" fill="#FFC875">★</text>
+  <text x="74" y="24" font-size="5" fill="#C8B8F0">✧</text>
+
+  <!-- Pink Bow -->
+  <ellipse cx="56" cy="48" rx="9" ry="5.5" fill="#F4A7C8" transform="rotate(-20,56,48)" />
+  <ellipse cx="64" cy="48" rx="9" ry="5.5" fill="#F4A7C8" transform="rotate(20,64,48)" />
+  <circle cx="60" cy="48" r="3.5" fill="#e87bb5" />
+
+  <!-- Skull Head -->
+  <ellipse cx="70" cy="100" rx="38" ry="42" fill="#FFF5E9" stroke="#E6DCCE" stroke-width="1.5" />
+
+  <!-- Eye Sockets -->
+  <ellipse cx="56" cy="96" rx="12" ry="13" fill="#292448" />
+  <ellipse cx="84" cy="96" rx="12" ry="13" fill="#292448" />
+
+  <!-- Amber Pupils -->
+  <circle cx="56" cy="96" r="3.5" fill="#FFC875" filter="url(#portrait-glow)" />
+  <circle cx="84" cy="96" r="3.5" fill="#FFC875" filter="url(#portrait-glow)" />
+  <circle cx="54" cy="94" r="1.2" fill="#FFFFFF" />
+  <circle cx="82" cy="94" r="1.2" fill="#FFFFFF" />
+
+  <!-- Smile -->
+  <path d="M62,116 Q70,124 78,116" stroke="#292448" stroke-width="2" fill="none" stroke-linecap="round" />
+
+  <!-- Cheeks -->
+  <ellipse cx="46" cy="110" rx="8" ry="4.5" fill="#F4A7C8" opacity="0.45" />
+  <ellipse cx="94" cy="110" rx="8" ry="4.5" fill="#F4A7C8" opacity="0.45" />
+</svg>
